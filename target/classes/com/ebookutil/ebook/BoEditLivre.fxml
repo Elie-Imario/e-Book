@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="449.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ebookutil.ebook.BoEditLivreController">
+   <children>
+      <Label fx:id="TitleBoEditLivre" alignment="CENTER" prefHeight="60.0" prefWidth="449.0" styleClass="title-lead-Modal" />
+      <VBox alignment="CENTER" prefWidth="375.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="33.0" prefWidth="145.0" styleClass="label-Form" text="Titre de l'ouvrage  :" />
+                  <TextField fx:id="titleBook" prefHeight="32.0" prefWidth="249.0" promptText="Titre de l'Ouvrage" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="33.0" prefWidth="145.0" styleClass="label-Form" text="Nom de l'Auteur : " />
+                  <TextField fx:id="AuthorName" prefHeight="32.0" prefWidth="248.0" promptText="Nom de l'Auteur" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="127.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="33.0" prefWidth="145.0" styleClass="label-Form" text="Date d'édition :" />
+                  <DatePicker fx:id="dateEdtion" editable="false" prefHeight="32.0" prefWidth="150.0" promptText="jj/mm/aa" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="133.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="33.0" prefWidth="145.0" styleClass="label-Form" text="Designation:" />
+                  <TextField fx:id="Designation" prefHeight="32.0" prefWidth="249.0" promptText="Designation" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="794.0">
+               <children>
+                  <Button fx:id="btnupdateBook" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" styleClass="btnConfirm" text="Enregistrer" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" iconName="SAVE" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnCancel" mnemonicParsing="false" prefHeight="35.0" prefWidth="129.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" iconName="TIMES" />
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="errorMsgOuvrage" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="30.0" styleClass="error-msg">
+               <graphic>
+                  <FontAwesomeIcon fill="RED" iconName="INFO_CIRCLE" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets top="40.0" />
+         </padding>
+      </VBox>
+      <HBox prefHeight="44.0" prefWidth="449.0">
+         <children>
+            <TextField fx:id="currentNumBook" editable="false" prefHeight="32.0" prefWidth="101.0" visible="false" />
+            <TextField fx:id="currenttitleBook" editable="false" prefHeight="32.0" prefWidth="101.0" visible="false" />
+            <TextField fx:id="currentAuthorName" editable="false" prefHeight="32.0" prefWidth="126.0" visible="false" />
+            <DatePicker fx:id="currentdateEdtion" editable="false" prefHeight="32.0" prefWidth="110.0" visible="false" />
+            <TextField fx:id="currentDesignation" editable="false" prefHeight="32.0" prefWidth="112.0" visible="false" />
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@css/mainWindowStyle.css" />
+      <URL value="@css/Title-lead.css" />
+      <URL value="@css/LabelForm.css" />
+   </stylesheets>
+</VBox>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="535.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ebookutil.ebook.BoDetailLecteurController">
+   <children>
+      <HBox prefHeight="71.0" prefWidth="535.0">
+         <children>
+            <Label fx:id="titledetail" alignment="CENTER" prefHeight="83.0" prefWidth="535.0" styleClass="title-lead-Modal" />
+         </children>
+      </HBox>
+      <VBox prefHeight="398.0" prefWidth="535.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="535.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="68.0" prefWidth="140.0" styleClass="label-Form" text="Nom du Lecteur :" />
+                  <Label fx:id="detailNomLecteur" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="535.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="68.0" prefWidth="140.0" styleClass="label-Form" text="Fonction :" />
+                  <Label fx:id="detailFonctionLecteur" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="78.0" prefWidth="535.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="68.0" prefWidth="140.0" styleClass="label-Form" text="Email :" />
+                  <Label fx:id="detailEmailLecteur" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="146.0" prefHeight="68.0" prefWidth="535.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="68.0" prefWidth="140.0" styleClass="label-Form" text="Mobile :" />
+                  <Label fx:id="detailMobileLecteur" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="214.0" prefHeight="68.0" prefWidth="535.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="68.0" prefWidth="140.0" styleClass="label-Form" text="Livre emprintée :" />
+                  <Label fx:id="detailNbLivreLecteur" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="282.0" prefHeight="68.0" prefWidth="535.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="68.0" prefWidth="140.0" styleClass="label-Form" text="Amende:" />
+                  <Label fx:id="detailAmendeLecteur" prefHeight="66.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@css/LabelForm.css" />
+      <URL value="@css/Title-lead.css" />
+   </stylesheets>
+</VBox>

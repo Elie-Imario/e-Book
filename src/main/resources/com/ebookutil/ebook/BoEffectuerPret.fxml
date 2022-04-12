@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.net.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="editLecteur" alignment="CENTER" prefHeight="443.0" prefWidth="449.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ebookutil.ebook.BoEffectuerPretController">
+   <children>
+      <Label fx:id="TitleBoEditLeteur" alignment="BOTTOM_CENTER" prefHeight="60.0" prefWidth="449.0" styleClass="title-lead-Modal" text="EFFECTUER UN PRET" />
+      <VBox alignment="CENTER" prefWidth="375.0">
+         <children>
+            <HBox fx:id="alertAmende" alignment="CENTER" layoutX="10.0" layoutY="127.0" prefWidth="200.0" visible="false">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <children>
+                  <Label fx:id="warningMsg" prefHeight="60.0" styleClass="warning-msg" text="Le nombre de jour de prêt est plus de 7jours, le Lecteur sera facturé de 5000 Fmg d'amende!" textAlignment="CENTER" textFill="#0a0a0a" wrapText="true">
+                     <graphic>
+                        <FontAwesomeIcon fill="#ffc107" iconName="WARNING" size="2.25em" />
+                     </graphic>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="33.0" prefWidth="150.0" styleClass="label-Form" text="Nom du Lecteur:">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="_readerName" prefHeight="32.0" prefWidth="249.0" promptText="Nom du Lecteur" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="33.0" prefWidth="150.0" styleClass="label-Form" text="Titre de l'Ouvrage:">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="_titleBook" prefHeight="32.0" prefWidth="249.0" promptText="Titre de l'Ouvrage" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="15.0" layoutY="103.0" prefWidth="200.0">
+               <children>
+                  <HBox prefWidth="201.0">
+                     <children>
+                        <Label prefHeight="31.0" prefWidth="109.0" styleClass="label-Form" text="Date debut:" />
+                        <DatePicker fx:id="dateDebPret" editable="false" prefHeight="31.0" prefWidth="130.0" promptText="jj/mm/yyyy">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox prefWidth="201.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="90.0" styleClass="label-Form" text="Date Fin:" />
+                        <DatePicker fx:id="dateFinPret" editable="false" prefHeight="33.0" prefWidth="110.0" promptText="jj/mm/yyyy">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="133.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="33.0" prefWidth="150.0" styleClass="label-Form" text="Nombre de jour:">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="NbjourPret" editable="false" prefHeight="32.0" prefWidth="249.0" promptText="Nombre de jour du prêt" styleClass="form-input-disabled" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="794.0">
+               <children>
+                  <Button fx:id="btnConfirmPret" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" styleClass="btnConfirm" text="Confirmer" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" iconName="SAVE" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnCancel" mnemonicParsing="false" prefHeight="35.0" prefWidth="129.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" iconName="TIMES" />
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="errorMsgPret" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="30.0" styleClass="error-msg" textAlignment="CENTER" wrapText="true">
+               <graphic>
+                  <FontAwesomeIcon fill="RED" iconName="INFO_CIRCLE" />
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@css/mainWindowStyle.css" />
+      <URL value="@css/LabelForm.css" />
+      <URL value="@css/Title-lead.css" />
+   </stylesheets>
+</VBox>

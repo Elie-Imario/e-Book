@@ -1,0 +1,19 @@
+.Bo-container{
+    -fx-background-color: #fff;
+}
+.btnConfirm{
+    -fx-background-color: #28a745;
+    -fx-cursor: hand;
+}
+.btnConfirm:pressed{
+    -fx-background-color: #077c2e;
+}
+
+.btnCancel{
+    -fx-background-color: #dc3545;
+    -fx-cursor: hand;
+}
+
+.btnCancel:pressed{
+    -fx-background-color: #D70022;
+}

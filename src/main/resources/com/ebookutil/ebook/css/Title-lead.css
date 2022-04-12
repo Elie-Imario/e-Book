@@ -1,0 +1,21 @@
+/*import font */
+@font-face {
+    font-family: "FREEZONE";
+    src: url("../fonts/FREEZONE.ttf");
+}
+
+@font-face {
+    font-family: "Owl Cute";
+    src: url('../fonts/Owl-Cute.ttf');
+}
+
+
+
+.title-lead{
+    -fx-font-size: 15px;
+    -fx-font-family: "FREEZONE";
+}
+.title-lead-Modal{
+    -fx-font-size: 18px;
+    -fx-font-family: "Owl Cute";
+}

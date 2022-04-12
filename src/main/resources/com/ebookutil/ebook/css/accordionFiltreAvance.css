@@ -1,0 +1,22 @@
+/*import font */
+@font-face {
+    font-family: "AvantGarde Bk BT";
+    src: url("../fonts/AvantGardeDemiBT.ttf");
+}
+
+.accordion > .titled-pane > .title
+{
+    -fx-background-color: #fff;
+    -fx-padding: 15;
+    -fx-font-size: 15px;
+    -fx-font-family: "AvantGarde Bk BT";
+}
+.accordion .content{
+    -fx-border-color: Transparent;
+    -fx-border-width: 0;
+}
+
+.accordion-body{
+    -fx-border-color: Transparent;
+    -fx-border-width: 0;
+}

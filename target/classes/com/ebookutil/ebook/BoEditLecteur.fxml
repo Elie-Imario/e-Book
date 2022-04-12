@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="editLecteur" alignment="CENTER" prefHeight="443.0" prefWidth="449.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ebookutil.ebook.BoEditLecteurController">
+   <children>
+      <Label fx:id="TitleBoEditLeteur" alignment="CENTER" prefHeight="60.0" prefWidth="449.0" styleClass="title-lead-Modal" />
+      <VBox alignment="CENTER" prefWidth="375.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="33.0" styleClass="label-Form" text="Nom du Lecteur:">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="readerName" prefHeight="32.0" prefWidth="249.0" promptText="Nom du Lecteur" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="137.0" styleClass="label-Form" text="Email:">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="emailReader" prefHeight="32.0" prefWidth="249.0" promptText="Email" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="127.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="137.0" styleClass="label-Form" text="Fonction:">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="fonctionReader" prefHeight="32.0" prefWidth="249.0" promptText="Fonction" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="133.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="137.0" styleClass="label-Form" text="Mobile:">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="mobileReader" prefHeight="32.0" prefWidth="249.0" promptText="Mobile" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="794.0">
+               <children>
+                  <Button fx:id="btnUpdateReader" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" styleClass="btnConfirm" text="Confirmer" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" iconName="SAVE" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnCancel" mnemonicParsing="false" prefHeight="35.0" prefWidth="129.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" iconName="TIMES" />
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="errorMsg" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="30.0" styleClass="error-msg">
+               <graphic>
+                  <FontAwesomeIcon fill="RED" iconName="INFO_CIRCLE" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" top="40.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </VBox>
+      <HBox>
+         <children>
+            <TextField fx:id="currentIdLecteur" disable="true" editable="false" visible="false" />
+            <TextField fx:id="currentNom_Lecteur" disable="true" editable="false" layoutX="10.0" layoutY="10.0" visible="false" />
+            <TextField fx:id="currentEmail_Lecteur" disable="true" editable="false" layoutX="10.0" layoutY="10.0" visible="false" />
+            <TextField fx:id="currentFonction_Lecteur" disable="true" editable="false" layoutX="10.0" layoutY="10.0" visible="false" />
+            <TextField fx:id="currentMobile_Lecteur" disable="true" editable="false" layoutX="10.0" layoutY="10.0" visible="false" />
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@css/mainWindowStyle.css" />
+      <URL value="@css/LabelForm.css" />
+      <URL value="@css/Title-lead.css" />
+   </stylesheets>
+</VBox>

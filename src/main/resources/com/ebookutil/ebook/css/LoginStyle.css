@@ -1,0 +1,51 @@
+/*import font */
+@font-face {
+    font-family: "BRUSHIA";
+    src: url("../fonts/BRUSHIA.ttf");
+}
+
+
+/* STYLE */
+.btn-close{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.btn-close:hover{
+    -fx-background-color: linear-gradient(red, transparent);
+}
+.login {
+    -fx-width: 100%;
+    -fx-height: 100%;
+    -fx-background-color: linear-gradient(rgb(12, 91, 160), rgb(0, 0, 30));
+}
+.logo {
+    -fx-font-size: 40px;
+    -fx-font-family: "BRUSHIA";
+}
+.form-control{
+    -fx-pref-height: 35px;
+    -fx-pref-width: 250px;
+}
+.button_group {
+}
+.btn-login {
+    -fx-background-color: rgb(12, 91, 160);
+    -fx-border-color: rgb(12, 91, 160);
+    -fx-border-radius: 3px;
+    -fx-cursor: hand;
+}
+.btn-login:hover{
+    -fx-background-color: rgb(0, 0, 30);
+    -fx-border-color: rgb(0, 0, 30);
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url('../fonts/Poppins-Regular.ttf');
+}
+
+.error-msg{
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+    -fx-font-family: "Poppins";
+}

@@ -1,0 +1,34 @@
+@font-face {
+    -fx-font-family: BRUSHIA;
+    src: url('../fonts/BRUSHIA.ttf');
+}
+
+@font-face {
+    font-family: BLUE_PAINT;
+    src: url('../../vendor/fonts/BLUE\ PAINT.otf');
+}
+
+@font-face {
+    font-family: FREEZONE;
+    src: url('../../vendor/fonts/FREEZONE.ttf');
+}
+
+@font-face {
+    font-family: GratySans;
+    src: url('../../vendor/fonts/GratySans.otf');
+}
+
+@font-face {
+    font-family: LAQUATSA_Regular;
+    src: url('../../vendor/fonts/LAQUATSA\ Regular.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../../vendor/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: ionicons;
+    src: url('../../vendor/fonts/ionicons/fonts/ionicons.ttf');
+}

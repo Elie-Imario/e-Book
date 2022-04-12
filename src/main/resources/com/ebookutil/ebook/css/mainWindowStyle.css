@@ -1,0 +1,210 @@
+/*import font */
+@font-face {
+    font-family: "BRUSHIA";
+    src: url("../fonts/BRUSHIA.ttf");
+}
+
+
+/* STYLE */
+.mainWindow{
+    -fx-border-color: rgb(0, 0, 0,.5);
+    -fx-border-width: 1;
+}
+.sidebar{
+    -fx-background-color: linear-gradient(rgb(12, 91, 160), rgb(0, 0, 30));
+}
+
+.sidebar-menu-nav{
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(255, 255, 255,.4) transparent rgb(0, 0, 0,.2) transparent;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+.sidebar-menu-nav.active{
+    -fx-background-color: linear-gradient(to top,rgba(3, 48, 88, 0.5), rgb(0, 0, 30)), linear-gradient(to bottom,rgba(3, 48, 88, 0.5), rgb(0, 0, 30));
+    -fx-cursor: pointer;
+    -fx-border-color: Transparent Transparent Transparent WHITE ;
+    -fx-border-width: 4;
+    -fx-cursor: hand;
+}
+
+.sidebar-brand {
+    -fx-font-size: 30px;
+    -fx-font-family: "BRUSHIA";
+}
+
+.top-menu{
+    -fx-background-color: #fff;
+    -fx-border-color: Transparent Transparent rgb(0, 0, 0,.1) Transparent;
+    -fx-border-width: 4;
+}
+.top-menu-item{
+    -fx-border-color: Transparent rgb(0, 0, 0,.1) Transparent Transparent;
+}
+
+.help-link{
+    -fx-border-color: Transparent;
+    -fx-background-color: Transparent;
+    -fx-cursor: hand;
+}
+.deconnexion-link{
+    -fx-border-color: Transparent;
+    -fx-background-color: Transparent;
+    -fx-cursor: hand;
+}
+
+.bloc_page{
+    -fx-background-color: #f5f5f5;
+}
+.scroll_page:focused{
+    -fx-border-color: Transparent;
+    -fx-border-width: 0px 0px 0px 0px;
+    -fx-background-color: Transparent;
+}
+
+.filtre-avance,
+.liste-dc,
+.annuaireSearch,
+.addReader
+{
+    -fx-border-color: rgb(0, 0, 0,.1);
+    -fx-border-width: 2;
+}
+.btnSearch,
+.btnRenitialize,
+.btn{
+    -fx-background-color: #c80f2d;
+    -fx-cursor: hand;
+}
+
+.btnSearch:pressed,
+.btnRenitialize:pressed,
+.btn:pressed{
+    -fx-background-color: #7C0718;
+    -fx-border-color: #7C0718;
+}
+
+/****************
+Button
+*****************/
+
+.btnConfirm{
+    -fx-background-color: #28a745;
+    -fx-cursor: hand;
+}
+.btnConfirm:pressed{
+    -fx-background-color: #077c2e;
+}
+
+.btnCancel{
+    -fx-background-color: #dc3545;
+    -fx-cursor: hand;
+}
+
+.btnCancel:pressed{
+    -fx-background-color: #D70022;
+}
+
+/**************
+Error
+**************/
+
+
+@font-face {
+    font-family: "Poppins";
+    src: url('../fonts/Poppins-Regular.ttf');
+}
+
+.error-msg{
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+    -fx-font-family: "Poppins";
+}
+/**************
+Warning
+**************/
+.warning-msg{
+    -fx-text-fill: #ffc107;
+    -fx-font-size: 14px;
+    -fx-font-family: "Poppins";
+}
+
+/*****************
+Date
+****************/
+.datepicker table tr td.day.today.active {
+    background-color: #c80f2d;
+    background-image: none;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+
+/****************
+Mon compte
+*****************/
+
+.changePassword-header{
+    -fx-background-color: linear-gradient(rgb(12, 91, 160), rgb(0, 0, 30));
+}
+.block{
+    -fx-border-width: 20px 0px 0px 0px;
+    -fx-border-color: #084079 Transparent Transparent Transparent;
+}
+
+.updatepswrdForm{
+    -fx-border-color: rgb(0, 0, 0,.1);
+    -fx-border-width: 2;
+}
+
+
+
+
+/*****************
+
+******************/
+
+
+
+
+.card-box{
+    -fx-background-color: #fff;
+    -fx-border-color: rgb(0, 0, 0,.1);
+    -fx-border-width: 2;
+    -fx-border-radius: 1;
+}
+
+
+/**********************
+---------PRET-----------
+************************/
+
+.form-input-disabled{
+    -fx-background-color: #d0d0d0;
+    -fx-border-color: rgba(0,0,0,0.2);
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+}
+
+
+/*********************
+---------PIE-CHART---
+**********************/
+
+.chart-pie {
+    -fx-border-color: derive(-fx-pie-color,-30%);
+}
+
+.chart-pie-label{
+    -fx-font-size: 10px;
+    -fx-font-family: "sans-serif";
+}
+
+.chart-pie-label-line{
+    -fx-stroke: #aaaaaa;
+    -fx-fill: #aaaaaa;
+}
