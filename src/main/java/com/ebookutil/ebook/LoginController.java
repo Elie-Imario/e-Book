@@ -67,7 +67,7 @@ public class LoginController implements Initializable {
     }
 
     public void AccessToMainWIndow()
-            throws boUserException {
+    throws boUserException {
         LoginValidateForm.validForm(_username, _password);
         showMainWindow();
     }

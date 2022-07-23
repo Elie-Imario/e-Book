@@ -1,11 +1,11 @@
 /*import font */
 @font-face {
-    font-family: "FREEZONE";
+    font-family: FREEZONE;
     src: url("../fonts/FREEZONE.ttf");
 }
 
 @font-face {
-    font-family: "Owl Cute";
+    font-family: Owl Cute;
     src: url('../fonts/Owl-Cute.ttf');
 }
 

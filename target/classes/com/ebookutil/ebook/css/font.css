@@ -5,30 +5,26 @@
 
 @font-face {
     font-family: BLUE_PAINT;
-    src: url('../../vendor/fonts/BLUE\ PAINT.otf');
+    src: url('');
+    src: url('');
 }
 
 @font-face {
     font-family: FREEZONE;
-    src: url('../../vendor/fonts/FREEZONE.ttf');
+    src: url('');
 }
 
 @font-face {
     font-family: GratySans;
-    src: url('../../vendor/fonts/GratySans.otf');
+    src: url('');
 }
 
 @font-face {
     font-family: LAQUATSA_Regular;
-    src: url('../../vendor/fonts/LAQUATSA\ Regular.ttf');
+    src: url('');
 }
 
 @font-face {
     font-family: Poppins-Regular;
-    src: url('../../vendor/fonts/Poppins-Regular.ttf');
-}
-
-@font-face {
-    font-family: ionicons;
-    src: url('../../vendor/fonts/ionicons/fonts/ionicons.ttf');
+    src: url('');
 }

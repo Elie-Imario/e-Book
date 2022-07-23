@@ -1,9 +1,12 @@
 /*import font */
 @font-face {
-    font-family: "BRUSHIA";
+    font-family: BRUSHIA;
     src: url("../fonts/BRUSHIA.ttf");
 }
-
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Regular.ttf");
+}
 
 /* STYLE */
 .btn-close{
@@ -20,7 +23,7 @@
 }
 .logo {
     -fx-font-size: 40px;
-    -fx-font-family: "BRUSHIA";
+    -fx-font-family: 'BRUSHIA';
 }
 .form-control{
     -fx-pref-height: 35px;
@@ -39,10 +42,6 @@
     -fx-border-color: rgb(0, 0, 30);
 }
 
-@font-face {
-    font-family: "Poppins";
-    src: url('../fonts/Poppins-Regular.ttf');
-}
 
 .error-msg{
     -fx-text-fill: red;

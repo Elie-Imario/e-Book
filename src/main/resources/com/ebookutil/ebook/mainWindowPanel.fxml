@@ -153,132 +153,96 @@
                      <children>
                         <StackPane fx:id="mainPane">
                            <children>
-                              <VBox fx:id="addOuvrageView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
+                              <VBox fx:id="monCompteView" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
                                  <children>
-                                    <VBox prefWidth="824.0">
+                                    <VBox prefHeight="295.0" prefWidth="838.0" styleClass="changePassword-header">
                                        <children>
-                                          <Label alignment="CENTER" prefHeight="56.0" prefWidth="854.0" styleClass="title-lead" stylesheets="@css/Title-lead.css" text="AJOUT D'UN NOUVEAU OUVRAGE">
+                                          <Label alignment="CENTER" prefHeight="96.0" prefWidth="875.0" styleClass="title-lead" text="MODIFIER MOT DE PASSE" textFill="WHITE">
                                              <font>
-                                                <Font name="Microsoft Sans Serif" size="12.0" />
+                                                <Font name="MS Reference Sans Serif" size="16.0" />
                                              </font>
-                                             <padding>
-                                                <Insets left="20.0" />
-                                             </padding>
                                           </Label>
-                                          <VBox prefWidth="784.0" style="-fx-background-color: white;" styleClass="addReader">
+                                       </children>
+                                    </VBox>
+                                    <Pane prefHeight="387.0" style="-fx-background-color: white;" styleClass="updatepswrdForm">
+                                       <VBox.margin>
+                                          <Insets left="200.0" right="200.0" top="-200.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <Pane layoutX="208.0" layoutY="33.0" prefHeight="20.0" prefWidth="20.0" rotate="-48.0" style="-fx-translate-y: -45;" styleClass="block" />
+                                          <ImageView fitHeight="41.0" fitWidth="81.0" layoutX="206.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/cadenas.png" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox layoutX="-4.0" layoutY="78.0" prefHeight="310.0" prefWidth="444.0">
                                              <children>
-                                                <VBox alignment="CENTER" prefWidth="375.0">
+                                                <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
                                                    <children>
-                                                      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
-                                                         <children>
-                                                            <Label prefHeight="33.0" styleClass="label-Form" text="Titre de l'ouvrage  :">
-                                                               <padding>
-                                                                  <Insets right="20.0" />
-                                                               </padding>
-                                                            </Label>
-                                                            <TextField fx:id="titleBook" prefHeight="32.0" prefWidth="249.0" promptText="Titre de l'Ouvrage" />
-                                                         </children>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets left="195.0" right="195.0" />
-                                                         </padding>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0" prefWidth="200.0">
-                                                         <children>
-                                                            <Label prefHeight="33.0" prefWidth="150.0" styleClass="label-Form" text="Nom de l'Auteur : ">
-                                                               <padding>
-                                                                  <Insets right="20.0" />
-                                                               </padding>
-                                                            </Label>
-                                                            <TextField fx:id="AuthorName" prefHeight="32.0" prefWidth="248.0" promptText="Nom de l'Auteur" />
-                                                         </children>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets left="195.0" right="195.0" />
-                                                         </padding>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="127.0" prefWidth="200.0">
-                                                         <children>
-                                                            <Label prefHeight="33.0" prefWidth="150.0" styleClass="label-Form" text="Date d'édition :">
-                                                               <padding>
-                                                                  <Insets right="20.0" />
-                                                               </padding>
-                                                            </Label>
-                                                            <DatePicker fx:id="dateEdtion" editable="false" prefHeight="32.0" prefWidth="150.0" promptText="jj/mm/aa" />
-                                                         </children>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets left="195.0" right="195.0" />
-                                                         </padding>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="133.0" prefWidth="200.0">
-                                                         <children>
-                                                            <Label prefHeight="33.0" prefWidth="150.0" styleClass="label-Form" text="Designation:">
-                                                               <padding>
-                                                                  <Insets right="20.0" />
-                                                               </padding>
-                                                            </Label>
-                                                            <TextField fx:id="Designation" prefHeight="32.0" prefWidth="249.0" promptText="Designation" />
-                                                         </children>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets left="195.0" right="195.0" />
-                                                         </padding>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="794.0">
-                                                         <children>
-                                                            <Button fx:id="btnADDBook" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" styleClass="btnConfirm" text="Enregistrer" textFill="WHITE">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                               <graphic>
-                                                                  <FontAwesomeIcon fill="WHITE" iconName="SAVE" />
-                                                               </graphic>
-                                                            </Button>
-                                                            <Button fx:id="btnCancelAddBook" mnemonicParsing="false" prefHeight="35.0" prefWidth="129.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                               <graphic>
-                                                                  <FontAwesomeIcon fill="WHITE" iconName="TIMES" />
-                                                               </graphic>
-                                                               <HBox.margin>
-                                                                  <Insets left="15.0" />
-                                                               </HBox.margin>
-                                                            </Button>
-                                                         </children>
-                                                      </HBox>
-                                                      <Label fx:id="errorMsgOuvrage" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="30.0" styleClass="error-msg">
+                                                      <FontAwesomeIcon fill="#96989a" iconName="KEY" wrappingWidth="34.0" />
+                                                      <PasswordField fx:id="_currentPswrd" alignment="CENTER" prefHeight="37.0" prefWidth="206.0" promptText="Ancien mot de passe" styleClass="form-control" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
+                                                   <children>
+                                                      <FontAwesomeIcon fill="#96989a" iconName="KEY" wrappingWidth="29.0" />
+                                                      <PasswordField fx:id="_newPswrd" alignment="CENTER" prefHeight="37.0" prefWidth="206.0" promptText="Nouveau mot de passe" styleClass="form-control" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
+                                                   <children>
+                                                      <FontAwesomeIcon fill="#96989a" iconName="KEY" wrappingWidth="29.0" />
+                                                      <PasswordField fx:id="_confirmPswrd" alignment="CENTER" prefHeight="37.0" prefWidth="206.0" promptText="Confirmer nouveau mot de passe" styleClass="form-control" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="65.0" prefWidth="444.0">
+                                                   <children>
+                                                      <Button fx:id="BtnupdatePswrd" alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" styleClass="btnConfirm" text="Modifier" textFill="WHITE">
+                                                         <graphic>
+                                                            <FontAwesomeIcon fill="WHITE" iconName="EDIT" size="1.7em" />
+                                                         </graphic>
+                                                         <HBox.margin>
+                                                            <Insets left="25.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button fx:id="btnCancelUpdatePswrd" alignment="CENTER" graphicTextGap="10.0" layoutX="151.0" layoutY="40.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
+                                                         <graphic>
+                                                            <FontAwesomeIcon fill="WHITE" iconName="TIMES" size="1.7em" />
+                                                         </graphic>
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <Label fx:id="errorMsgChangePswrd" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="42.0" prefWidth="427.0" styleClass="error-msg" textAlignment="CENTER" wrapText="true">
                                                          <graphic>
                                                             <FontAwesomeIcon fill="RED" iconName="INFO_CIRCLE" />
                                                          </graphic>
-                                                         <VBox.margin>
-                                                            <Insets top="20.0" />
-                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets left="10.0" />
+                                                         </padding>
                                                       </Label>
                                                    </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="20.0" top="20.0" />
-                                                   </VBox.margin>
-                                                   <padding>
-                                                      <Insets top="40.0" />
-                                                   </padding>
-                                                </VBox>
+                                                </HBox>
                                              </children>
-                                             <VBox.margin>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </VBox.margin>
+                                             <padding>
+                                                <Insets top="30.0" />
+                                             </padding>
                                           </VBox>
                                        </children>
-                                    </VBox>
+                                    </Pane>
                                  </children>
                               </VBox>
                               <VBox fx:id="chartView" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
@@ -737,6 +701,125 @@
                                     </ScrollPane>
                                  </children>
                               </VBox>
+                              <VBox fx:id="createReaderView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
+                                 <children>
+                                    <VBox prefWidth="824.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="56.0" prefWidth="854.0" styleClass="title-lead" stylesheets="@css/Title-lead.css" text="AJOUT D'UN NOUVEAU LECTEUR">
+                                             <font>
+                                                <Font name="Microsoft Sans Serif" size="12.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </Label>
+                                          <VBox prefWidth="784.0" style="-fx-background-color: white;" styleClass="addReader">
+                                             <VBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <VBox alignment="CENTER" prefWidth="375.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER" prefWidth="200.0">
+                                                         <children>
+                                                            <Label alignment="CENTER_RIGHT" prefHeight="33.0" styleClass="label-Form" text="Nom du Lecteur:">
+                                                               <padding>
+                                                                  <Insets right="20.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <TextField fx:id="readerName" prefHeight="32.0" prefWidth="249.0" promptText="Nom du Lecteur" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="60.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="131.0" styleClass="label-Form" text="Email:">
+                                                               <padding>
+                                                                  <Insets right="20.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <TextField fx:id="emailReader" prefHeight="32.0" prefWidth="249.0" promptText="Email" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="127.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="131.0" styleClass="label-Form" text="Fonction:">
+                                                               <padding>
+                                                                  <Insets right="20.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <TextField fx:id="fonctionReader" prefHeight="32.0" prefWidth="249.0" promptText="Fonction" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="133.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="131.0" styleClass="label-Form" text="Mobile:">
+                                                               <padding>
+                                                                  <Insets right="20.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <TextField fx:id="mobileReader" prefHeight="32.0" prefWidth="249.0" promptText="Mobile" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="794.0">
+                                                         <children>
+                                                            <Button fx:id="btnAddReader" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" styleClass="btnConfirm" text="Enregistrer" textFill="WHITE">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                               <graphic>
+                                                                  <FontAwesomeIcon fill="WHITE" iconName="SAVE" />
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button fx:id="btnCancelAddReader" mnemonicParsing="false" prefHeight="35.0" prefWidth="129.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                               <graphic>
+                                                                  <FontAwesomeIcon fill="WHITE" iconName="TIMES" />
+                                                               </graphic>
+                                                               <HBox.margin>
+                                                                  <Insets left="15.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                      </HBox>
+                                                      <Label fx:id="errorMsg" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="30.0" styleClass="error-msg">
+                                                         <VBox.margin>
+                                                            <Insets left="25.0" top="20.0" />
+                                                         </VBox.margin>
+                                                         <graphic>
+                                                            <FontAwesomeIcon fill="RED" iconName="INFO_CIRCLE" />
+                                                         </graphic>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" top="20.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets top="40.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </VBox>
                               <VBox fx:id="ListOuvrageView" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
                                  <children>
                                     <ScrollPane hbarPolicy="NEVER" hmax="0.0" prefHeight="588.0" prefWidth="841.0" styleClass="scroll_page">
@@ -865,7 +948,6 @@
                                                                   <TableColumn fx:id="num_Ouvrage" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" resizable="false" text="N° Ouvrage" />
                                                                   <TableColumn fx:id="titre_Ouvrage" text="Titre" />
                                                                   <TableColumn fx:id="auteur_Ouvrage" text="Auteur" />
-                                                                  <TableColumn fx:id="designation_Ouvrage" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Designation" />
                                                                   <TableColumn fx:id="date_Edition" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Date édition" />
                                                                   <TableColumn fx:id="disponible" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" text="Disponible" />
                                                                </columns>
@@ -908,11 +990,11 @@
                                     </ScrollPane>
                                  </children>
                               </VBox>
-                              <VBox fx:id="createReaderView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
+                              <VBox fx:id="addOuvrageView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
                                  <children>
                                     <VBox prefWidth="824.0">
                                        <children>
-                                          <Label alignment="CENTER" prefHeight="56.0" prefWidth="854.0" styleClass="title-lead" stylesheets="@css/Title-lead.css" text="AJOUT D'UN NOUVEAU LECTEUR">
+                                          <Label alignment="CENTER" prefHeight="56.0" prefWidth="854.0" styleClass="title-lead" stylesheets="@css/Title-lead.css" text="AJOUT D'UN NOUVEAU OUVRAGE">
                                              <font>
                                                 <Font name="Microsoft Sans Serif" size="12.0" />
                                              </font>
@@ -921,67 +1003,60 @@
                                              </padding>
                                           </Label>
                                           <VBox prefWidth="784.0" style="-fx-background-color: white;" styleClass="addReader">
-                                             <VBox.margin>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </VBox.margin>
                                              <children>
                                                 <VBox alignment="CENTER" prefWidth="375.0">
                                                    <children>
-                                                      <HBox alignment="CENTER" prefWidth="200.0">
+                                                      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                          <children>
-                                                            <Label alignment="CENTER_RIGHT" prefHeight="33.0" styleClass="label-Form" text="Nom du Lecteur:">
+                                                            <Label prefHeight="33.0" prefWidth="160.0" styleClass="label-Form" text="Titre de l'ouvrage  :">
                                                                <padding>
                                                                   <Insets right="20.0" />
                                                                </padding>
                                                             </Label>
-                                                            <TextField fx:id="readerName" prefHeight="32.0" prefWidth="249.0" promptText="Nom du Lecteur" />
+                                                            <TextField fx:id="titleBook" prefHeight="32.0" prefWidth="249.0" promptText="Titre de l'Ouvrage" />
                                                          </children>
                                                          <VBox.margin>
                                                             <Insets bottom="20.0" />
                                                          </VBox.margin>
+                                                         <padding>
+                                                            <Insets left="195.0" right="195.0" />
+                                                         </padding>
                                                       </HBox>
-                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="60.0" prefWidth="200.0">
+                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0" prefWidth="200.0">
                                                          <children>
-                                                            <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="131.0" styleClass="label-Form" text="Email:">
+                                                            <Label prefHeight="33.0" prefWidth="160.0" styleClass="label-Form" text="Nom de l'Auteur : ">
                                                                <padding>
                                                                   <Insets right="20.0" />
                                                                </padding>
                                                             </Label>
-                                                            <TextField fx:id="emailReader" prefHeight="32.0" prefWidth="249.0" promptText="Email" />
+                                                            <TextField fx:id="AuthorName" prefHeight="32.0" prefWidth="248.0" promptText="Nom de l'Auteur" />
                                                          </children>
                                                          <VBox.margin>
                                                             <Insets bottom="20.0" />
                                                          </VBox.margin>
+                                                         <padding>
+                                                            <Insets left="195.0" right="195.0" />
+                                                         </padding>
                                                       </HBox>
-                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="127.0" prefWidth="200.0">
+                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="127.0" prefWidth="200.0">
                                                          <children>
-                                                            <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="131.0" styleClass="label-Form" text="Fonction:">
+                                                            <Label prefHeight="33.0" prefWidth="160.0" styleClass="label-Form" text="Date d'édition :">
                                                                <padding>
                                                                   <Insets right="20.0" />
                                                                </padding>
                                                             </Label>
-                                                            <TextField fx:id="fonctionReader" prefHeight="32.0" prefWidth="249.0" promptText="Fonction" />
+                                                            <DatePicker fx:id="dateEdtion" editable="false" prefHeight="32.0" prefWidth="150.0" promptText="jj/mm/aa" />
                                                          </children>
                                                          <VBox.margin>
                                                             <Insets bottom="20.0" />
                                                          </VBox.margin>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="133.0" prefWidth="200.0">
-                                                         <children>
-                                                            <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="131.0" styleClass="label-Form" text="Mobile:">
-                                                               <padding>
-                                                                  <Insets right="20.0" />
-                                                               </padding>
-                                                            </Label>
-                                                            <TextField fx:id="mobileReader" prefHeight="32.0" prefWidth="249.0" promptText="Mobile" />
-                                                         </children>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets left="195.0" right="195.0" />
+                                                         </padding>
                                                       </HBox>
                                                       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="794.0">
                                                          <children>
-                                                            <Button fx:id="btnAddReader" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" styleClass="btnConfirm" text="Enregistrer" textFill="WHITE">
+                                                            <Button fx:id="btnADDBook" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" styleClass="btnConfirm" text="Enregistrer" textFill="WHITE">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -989,7 +1064,7 @@
                                                                   <FontAwesomeIcon fill="WHITE" iconName="SAVE" />
                                                                </graphic>
                                                             </Button>
-                                                            <Button fx:id="btnCancelAddReader" mnemonicParsing="false" prefHeight="35.0" prefWidth="129.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
+                                                            <Button fx:id="btnCancelAddBook" mnemonicParsing="false" prefHeight="35.0" prefWidth="129.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -1002,13 +1077,13 @@
                                                             </Button>
                                                          </children>
                                                       </HBox>
-                                                      <Label fx:id="errorMsg" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="30.0" styleClass="error-msg">
-                                                         <VBox.margin>
-                                                            <Insets left="25.0" top="20.0" />
-                                                         </VBox.margin>
+                                                      <Label fx:id="errorMsgOuvrage" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="30.0" styleClass="error-msg">
                                                          <graphic>
                                                             <FontAwesomeIcon fill="RED" iconName="INFO_CIRCLE" />
                                                          </graphic>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
                                                       </Label>
                                                    </children>
                                                    <VBox.margin>
@@ -1019,13 +1094,13 @@
                                                    </padding>
                                                 </VBox>
                                              </children>
+                                             <VBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </VBox.margin>
                                           </VBox>
                                        </children>
                                     </VBox>
                                  </children>
-                                 <StackPane.margin>
-                                    <Insets />
-                                 </StackPane.margin>
                               </VBox>
                               <VBox fx:id="pretView" prefHeight="860.0" prefWidth="838.0" style="-fx-background-color: #f5f5f5;">
                                  <children>
@@ -1269,98 +1344,6 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </ScrollPane>
-                                 </children>
-                              </VBox>
-                              <VBox fx:id="monCompteView" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
-                                 <children>
-                                    <VBox prefHeight="295.0" prefWidth="838.0" styleClass="changePassword-header">
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="96.0" prefWidth="875.0" styleClass="title-lead" text="MODIFIER MOT DE PASSE" textFill="WHITE">
-                                             <font>
-                                                <Font name="MS Reference Sans Serif" size="16.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <Pane prefHeight="387.0" style="-fx-background-color: white;" styleClass="updatepswrdForm">
-                                       <VBox.margin>
-                                          <Insets left="200.0" right="200.0" top="-200.0" />
-                                       </VBox.margin>
-                                       <children>
-                                          <Pane layoutX="208.0" layoutY="33.0" prefHeight="20.0" prefWidth="20.0" rotate="-48.0" style="-fx-translate-y: -45;" styleClass="block" />
-                                          <ImageView fitHeight="41.0" fitWidth="81.0" layoutX="206.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@img/cadenas.png" />
-                                             </image>
-                                          </ImageView>
-                                          <VBox layoutX="-4.0" layoutY="78.0" prefHeight="310.0" prefWidth="444.0">
-                                             <children>
-                                                <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
-                                                   <children>
-                                                      <FontAwesomeIcon fill="#96989a" iconName="KEY" wrappingWidth="34.0" />
-                                                      <PasswordField fx:id="_currentPswrd" alignment="CENTER" prefHeight="37.0" prefWidth="206.0" promptText="Ancien mot de passe" styleClass="form-control" />
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </HBox>
-                                                <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
-                                                   <children>
-                                                      <FontAwesomeIcon fill="#96989a" iconName="KEY" wrappingWidth="29.0" />
-                                                      <PasswordField fx:id="_newPswrd" alignment="CENTER" prefHeight="37.0" prefWidth="206.0" promptText="Nouveau mot de passe" styleClass="form-control" />
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="10.0" />
-                                                   </VBox.margin>
-                                                </HBox>
-                                                <HBox alignment="CENTER" prefHeight="47.0" prefWidth="640.0">
-                                                   <children>
-                                                      <FontAwesomeIcon fill="#96989a" iconName="KEY" wrappingWidth="29.0" />
-                                                      <PasswordField fx:id="_confirmPswrd" alignment="CENTER" prefHeight="37.0" prefWidth="206.0" promptText="Confirmer nouveau mot de passe" styleClass="form-control" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" prefHeight="65.0" prefWidth="444.0">
-                                                   <children>
-                                                      <Button fx:id="BtnupdatePswrd" alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" styleClass="btnConfirm" text="Modifier" textFill="WHITE">
-                                                         <graphic>
-                                                            <FontAwesomeIcon fill="WHITE" iconName="EDIT" size="1.7em" />
-                                                         </graphic>
-                                                         <HBox.margin>
-                                                            <Insets left="25.0" />
-                                                         </HBox.margin>
-                                                      </Button>
-                                                      <Button fx:id="btnCancelUpdatePswrd" alignment="CENTER" graphicTextGap="10.0" layoutX="151.0" layoutY="40.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
-                                                         <graphic>
-                                                            <FontAwesomeIcon fill="WHITE" iconName="TIMES" size="1.7em" />
-                                                         </graphic>
-                                                         <HBox.margin>
-                                                            <Insets left="10.0" />
-                                                         </HBox.margin>
-                                                      </Button>
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER">
-                                                   <VBox.margin>
-                                                      <Insets />
-                                                   </VBox.margin>
-                                                   <children>
-                                                      <Label fx:id="errorMsgChangrPswrd" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="42.0" prefWidth="427.0" styleClass="error-msg" textAlignment="CENTER" wrapText="true">
-                                                         <graphic>
-                                                            <FontAwesomeIcon fill="RED" iconName="INFO_CIRCLE" />
-                                                         </graphic>
-                                                         <padding>
-                                                            <Insets left="10.0" />
-                                                         </padding>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <padding>
-                                                <Insets top="30.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </Pane>
                                  </children>
                               </VBox>
                            </children>

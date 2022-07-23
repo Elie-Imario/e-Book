@@ -91,7 +91,7 @@ public class BoEditLecteurController implements Initializable {
         LecteurAction.RefreshTableLecteur(TabListLecteur);
         PretAction.RefreshTablePret(TabListPret);
 
-        AlertMessage.AlertSuccess(mainWindow, "Les info du lecteur ont été modifiées avec success!");
+        AlertMessage.AlertSuccess(mainWindow, "Les info du lecteur ont été modifiées avec succès!");
 
     }
 

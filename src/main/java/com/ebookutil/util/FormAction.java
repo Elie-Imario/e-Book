@@ -15,11 +15,10 @@ public class FormAction {
         errorMsg.setContentDisplay(ContentDisplay.TEXT_ONLY);
     }
 
-    public static void clearFormGroupBook(TextField textField1, TextField textField2, DatePicker datePicker, TextField textField3, Label errorMsg) {
+    public static void clearFormGroupBook(TextField textField1, TextField textField2, DatePicker datePicker, Label errorMsg) {
         textField1.clear();
         textField2.clear();
         datePicker.setValue(null);
-        textField3.clear();
         errorMsg.setText("");
         errorMsg.setContentDisplay(ContentDisplay.TEXT_ONLY);
     }

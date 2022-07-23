@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="e-Book" target="17" />
+      <module name="e-Book" target="1--add-exports java.datatransfer/java.awt=com.ebookutil.ebook7" />
     </bytecodeTargetLevel>
   </component>
 </project>

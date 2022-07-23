@@ -62,7 +62,7 @@ public class mainWindowController implements Initializable {
 
 
     // ADD NEW BOOK
-    @FXML private TextField titleBook, AuthorName, Designation;
+    @FXML private TextField titleBook, AuthorName;
     @FXML private DatePicker dateEdtion;
     @FXML private Button btnADDBook, btnCancelAddBook;
     @FXML private Label errorMsgOuvrage;
@@ -72,7 +72,6 @@ public class mainWindowController implements Initializable {
     @FXML private TableColumn<Livre, Integer> num_Ouvrage;
     @FXML private TableColumn<Livre, String> titre_Ouvrage;
     @FXML private TableColumn<Livre, String> auteur_Ouvrage;
-    @FXML private TableColumn<Livre, String> designation_Ouvrage;
     @FXML private TableColumn<Livre, Date> date_Edition;
     @FXML private TableColumn<Livre, Boolean> disponible;
     @FXML private Label totalLivrePret;
@@ -114,7 +113,7 @@ public class mainWindowController implements Initializable {
     //CHANGE E-NDRANA Password
     @FXML private PasswordField _currentPswrd, _newPswrd, _confirmPswrd;
     @FXML private Button BtnupdatePswrd, btnCancelUpdatePswrd;
-    @FXML private Label errorMsgChangrPswrd;
+    @FXML private Label errorMsgChangePswrd;
 
 
     @Override
@@ -286,8 +285,8 @@ public class mainWindowController implements Initializable {
         });
 
         btnCancelAddBook.setOnMouseClicked((ActionEvent)->{
-            FormAction.clearFormGroupBook(titleBook, AuthorName, dateEdtion, Designation, errorMsgOuvrage);
-            BookValidateForm.setSuccessStyle(titleBook, AuthorName, dateEdtion, Designation);
+            FormAction.clearFormGroupBook(titleBook, AuthorName, dateEdtion, errorMsgOuvrage);
+            BookValidateForm.setSuccessStyle(titleBook, AuthorName, dateEdtion);
         });
 
         updateBook.setOnAction((ActionEvent)->{
@@ -310,7 +309,7 @@ public class mainWindowController implements Initializable {
             }
         });
         OuvragebtnSearch.setOnMouseClicked((ActionEvent)->{
-            BookAction.resultOuvrageSearch(TabListBook ,num_Ouvrage, titre_Ouvrage, auteur_Ouvrage, designation_Ouvrage, date_Edition, disponible,
+            BookAction.resultOuvrageSearch(TabListBook ,num_Ouvrage, titre_Ouvrage, auteur_Ouvrage, date_Edition, disponible,
                     titreOuvrageSearch, nomAuteurSearch);
         });
 
@@ -379,11 +378,15 @@ public class mainWindowController implements Initializable {
                 UpdatePassword(_currentPswrd, _newPswrd, _confirmPswrd);
             }
             catch (boUserException e){
-                errorMsgChangrPswrd.setContentDisplay(ContentDisplay.LEFT);
-                errorMsgChangrPswrd.setText(e.getMessage());
+                errorMsgChangePswrd.setContentDisplay(ContentDisplay.LEFT);
+                errorMsgChangePswrd.setText(e.getMessage());
 
-                new animatefx.animation.FadeIn(errorMsgChangrPswrd).play();
+                new animatefx.animation.FadeIn(errorMsgChangePswrd).play();
             }
+        });
+
+        btnCancelUpdatePswrd.setOnMouseClicked((ActionEvent)->{
+            boUserAction.resetFormToNormal(_currentPswrd, _newPswrd, _confirmPswrd, errorMsgChangePswrd);
         });
 
     }
@@ -409,7 +412,7 @@ public class mainWindowController implements Initializable {
         LecteurValidateForm.ValidForm(readerName,emailReader, fonctionReader, mobileReader);
 
         LecteurAction.AddLecteur(readerNameVal, emailReaderVal, fonctionReaderVal, mobileReaderVal);
-        AlertMessage.AlertSuccess(mainWindow, "Le nouveau lecteur a été ajouté avec success!");
+        AlertMessage.AlertSuccess(mainWindow, "Le nouveau lecteur a été ajouté avec succès!");
         GETListLecteurAction();//refresh TabListLecteur
         FormAction.clearFormGroupLecteur(readerName, emailReader, fonctionReader, mobileReader, errorMsg);//clearFormulaireLecteur
         LecteurValidateForm.setSuccessStyle(readerName, emailReader, fonctionReader, mobileReader);
@@ -510,20 +513,19 @@ public class mainWindowController implements Initializable {
     throws BookException{
         String titleBookText = titleBook.getText();
         String authorNameText = AuthorName.getText();
-        String designationVal = Designation.getText();
 
-        BookValidateForm.validForm(titleBook,AuthorName, dateEdtion, Designation);
+        BookValidateForm.validForm(titleBook,AuthorName, dateEdtion);
 
         Date getDateEdition = Date.valueOf(dateEdtion.getValue());
-        BookAction.ADDBOOK(titleBookText, authorNameText, getDateEdition, designationVal);
+        BookAction.ADDBOOK(titleBookText, authorNameText, getDateEdition);
         AlertMessage.AlertSuccess(mainWindow, "Un nouveau ouvrage a été ajouté sur E-NDRANA");
         GETListBookAction();
-        FormAction.clearFormGroupBook(titleBook, AuthorName, dateEdtion, Designation, errorMsgOuvrage);
-        BookValidateForm.setSuccessStyle(titleBook, AuthorName, dateEdtion, Designation);
+        FormAction.clearFormGroupBook(titleBook, AuthorName, dateEdtion, errorMsgOuvrage);
+        BookValidateForm.setSuccessStyle(titleBook, AuthorName, dateEdtion);
     }
 
     public void GETListBookAction(){
-        BookAction.showListBook(TabListBook, num_Ouvrage, titre_Ouvrage, auteur_Ouvrage, designation_Ouvrage, date_Edition, disponible);
+        BookAction.showListBook(TabListBook, num_Ouvrage, titre_Ouvrage, auteur_Ouvrage, date_Edition, disponible);
     }
 
     public void initUpdateLivre(Livre selectedLivreForUpdate){
@@ -701,8 +703,11 @@ public class mainWindowController implements Initializable {
     public void UpdatePassword(PasswordField currentPswrd, PasswordField newPswrd, PasswordField confirmPswrd)
     throws boUserException {
         UpdatePasswordValidateForm.validForm(currentPswrd, newPswrd, confirmPswrd);
+        String hashedPassword = boUserAction.generateHashPassWord(newPswrd.getText());
 
-
+        boUserAction.UpdateUserPassword(hashedPassword);
+        boUserAction.resetFormToNormal(currentPswrd, newPswrd, confirmPswrd, errorMsgChangePswrd);
+        AlertMessage.AlertSuccess(mainWindow, "Votre mot de passe a été modifié avec succès!");
     }
 
 

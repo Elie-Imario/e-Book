@@ -30,12 +30,12 @@ public class LoginValidateForm {
                 System.out.println("login & password valid");
             }
             else {
-                if(isLoginValid(login.getText())==false){
+                if(!isLoginValid(login.getText())){
                     setErrorStyle(login);
                     setSuccessStyle(passwordField);
-                    throw new boUserException("Ce Login de compte est incorrect!");
+                    throw new boUserException("Ce Login est incorrect!");
                 }
-                else if (isPassWordCorrect(passwordField.getText())==false){
+                else if (!isPassWordCorrect(passwordField.getText())){
                     setErrorStyle(passwordField);
                     setSuccessStyle(login);
                     throw new boUserException("Ce mot de passe est incorrect!");
@@ -90,7 +90,8 @@ public class LoginValidateForm {
 
     public static Boolean isPassWordCorrect(String _password){
         Connection connection = connectionToDatabase.getInstance();
-        String query = "SELECT * FROM bo_user WHERE Password="+"\""+_password+"\""+"";
+        String hashedPassword = boUserAction.generateHashPassWord(_password);
+        String query = "SELECT * FROM bo_User WHERE Password ="+"\""+hashedPassword+"\""+"";
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet resultSet = statement.executeQuery(query);

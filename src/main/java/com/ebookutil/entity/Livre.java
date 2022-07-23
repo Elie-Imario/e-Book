@@ -6,17 +6,15 @@ public class Livre {
     private int Id_Ouvrage;
     private String Titre_Ouvrage;
     private String Nom_Auteur;
-    private String Designation;
     private Date Date_Edition;
     private boolean Disponible;
     private int NbFoisPret;
 
 
-    public Livre(int id_Ouvrage, String titre_Ouvrage, String nom_Auteur, String designation, Date date_Edition, boolean disponible, int nbFoisPret) {
+    public Livre(int id_Ouvrage, String titre_Ouvrage, String nom_Auteur, Date date_Edition, boolean disponible, int nbFoisPret) {
         this.Id_Ouvrage = id_Ouvrage;
         this.Titre_Ouvrage = titre_Ouvrage;
         this.Nom_Auteur = nom_Auteur;
-        this.Designation = designation;
         this.Date_Edition = date_Edition;
         this.Disponible = disponible;
         this.NbFoisPret = nbFoisPret;
@@ -46,14 +44,6 @@ public class Livre {
 
     public void setNom_Auteur(String nom_Auteur) {
         this.Nom_Auteur = nom_Auteur;
-    }
-
-    public String getDesignation() {
-        return Designation;
-    }
-
-    public void setDesignation(String designation) {
-        this.Designation = designation;
     }
 
     public Date getDate_Edition() {

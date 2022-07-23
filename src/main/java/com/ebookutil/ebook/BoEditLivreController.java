@@ -25,7 +25,6 @@ public class BoEditLivreController implements Initializable {
     @FXML private TextField titleBook;
     @FXML private TextField AuthorName;
     @FXML private DatePicker dateEdtion;
-    @FXML private TextField Designation;
 
     @FXML private Button btnupdateBook;
     @FXML private Button btnCancel;
@@ -34,7 +33,6 @@ public class BoEditLivreController implements Initializable {
     @FXML private TextField currenttitleBook;
     @FXML private TextField currentAuthorName;
     @FXML private DatePicker currentdateEdtion;
-    @FXML private TextField currentDesignation;
 
     private TableView<Livre> TabListLivre;
     private TableView<Pret> TabListPret;
@@ -69,14 +67,12 @@ public class BoEditLivreController implements Initializable {
         AuthorName.setText(selectedLivreForUPdate.getNom_Auteur());
         LocalDate localDate = new Date(selectedLivreForUPdate.getDate_Edition().getTime()).toLocalDate();
         dateEdtion.setValue(localDate);
-        Designation.setText(selectedLivreForUPdate.getDesignation());
 
         // current Lecteur Info Hide
         currentNumBook.setText(Integer.valueOf(selectedLivreForUPdate.getId_Ouvrage()).toString());
         currenttitleBook.setText(selectedLivreForUPdate.getTitre_Ouvrage());
         currentAuthorName.setText(selectedLivreForUPdate.getNom_Auteur());
         currentdateEdtion.setValue(localDate);
-        currentDesignation.setText(selectedLivreForUPdate.getDesignation());
     }
 
 
@@ -87,15 +83,14 @@ public class BoEditLivreController implements Initializable {
         String _titleBook = titleBook.getText();
         String _AuthorName = AuthorName.getText();
         Date _dateEdition = Date.valueOf(dateEdtion.getValue());
-        String _designation = Designation.getText();
 
         //setValue compare to Old Value
-        BookValidateForm.compareNewFormValueToOld(currenttitleBook, currentAuthorName, currentdateEdtion, currentDesignation, titleBook, AuthorName, dateEdtion, Designation);
+        BookValidateForm.compareNewFormValueToOld(currenttitleBook, currentAuthorName, currentdateEdtion, titleBook, AuthorName, dateEdtion);
 
-        //valide v n form
-         BookValidateForm.validForm(titleBook, AuthorName, dateEdtion, Designation);
+        //valider form
+         BookValidateForm.validForm(titleBook, AuthorName, dateEdtion);
         //update
-        BookAction.UpdateBook(_idOuvrage, _titleBook, _AuthorName, _dateEdition, _designation);
+        BookAction.UpdateBook(_idOuvrage, _titleBook, _AuthorName, _dateEdition);
         //mise a jour table Livre
         BookAction.RefreshTableLivre(TabListLivre);
 

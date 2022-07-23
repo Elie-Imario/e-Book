@@ -29,42 +29,44 @@ public class UpdatePasswordValidateForm{
             setSuccessStyle(currentpswrd, newpswrd);
             throw new boUserException("Veuillez confirmer le nouveau mot de passe!");
         }
-        else if((currentpswrd.getText())!=null){
-            if(isPasswordValid(currentpswrd.getText())){
-                System.out.println("Current Password Valid / ");
-            }
-            else{
-                setErrorStyle(currentpswrd);
-                setSuccessStyle(newpswrd, confirmpswrd);
-                throw new boUserException("Le mot de passe est incorrect");
-            }
-        }
-        else if((newpswrd.getText()!=null) && (confirmpswrd.getText()!=null)){
-            if(newpswrd.getText().length()<4){
-                setErrorStyle(newpswrd);
-                setSuccessStyle(currentpswrd, confirmpswrd);
-                throw new boUserException("Le nouveau de mot de passe doit contenir au moins 4 caractères");
-            }
 
-            else if(confirmpswrd.getText().length()<4){
-                setErrorStyle(confirmpswrd);
-                setSuccessStyle(currentpswrd, newpswrd);
-                throw new boUserException("Le nouveau de mot de passe doit contenir au moins 4 caractères");
-            }
-
-            else{
-                if ((newpswrd.getText()).equals((confirmpswrd.getText()))){
-                    System.out.println("newPassword & confirmPassword valid");
-                }
-                else{
-                    setErrorStyle(newpswrd, confirmpswrd);
-                    setSuccessStyle(currentpswrd);
-                    throw new boUserException("Le nouveau mot de passe différe de sa confirmation");
-                }
-            }
-           }
         else{
+            if(((currentpswrd.getText())!=null) && ((newpswrd.getText())!=null) && (confirmpswrd.getText()!=null)){
+                if(currentpswrd.getText()!=null){
+                    if(isPasswordValid(currentpswrd.getText())){
+                        System.out.println("Current Password Valid");
+                    }
+                    else{
+                        setErrorStyle(currentpswrd);
+                        setSuccessStyle(newpswrd, confirmpswrd);
+                        throw new boUserException("Le mot de passe est incorrect");
+                    }
+                }
 
+                if((newpswrd.getText()!=null) && (confirmpswrd.getText()!=null)) {
+                    if (newpswrd.getText().length() < 4) {
+                        setErrorStyle(newpswrd);
+                        setSuccessStyle(currentpswrd, confirmpswrd);
+                        throw new boUserException("Le nouveau de mot de passe doit contenir au moins 4 caractères");
+                    } else if (confirmpswrd.getText().length() < 4) {
+                        setErrorStyle(confirmpswrd);
+                        setSuccessStyle(currentpswrd, newpswrd);
+                        throw new boUserException("Le nouveau de mot de passe doit contenir au moins 4 caractères");
+                    } else {
+                        if ((newpswrd.getText()).equals((confirmpswrd.getText()))) {
+                            System.out.println("newPassword & confirmPassword valid");
+                        } else {
+                            setErrorStyle(newpswrd, confirmpswrd);
+                            setSuccessStyle(currentpswrd);
+                            throw new boUserException("Le nouveau mot de passe différe de sa confirmation");
+                        }
+                    }
+                }
+            }
+
+            else{
+
+            }
         }
     }
 
@@ -114,7 +116,8 @@ public class UpdatePasswordValidateForm{
 
     public static boolean isPasswordValid(String password){
         Connection connection = connectionToDatabase.getInstance();
-        String query = "SELECT * FROM bo_User WHERE Password ="+"\""+password+"\""+"";
+        String hashedPassword = boUserAction.generateHashPassWord(password);
+        String query = "SELECT * FROM bo_User WHERE Password ="+"\""+hashedPassword+"\""+"";
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet resultSet = statement.executeQuery(query);

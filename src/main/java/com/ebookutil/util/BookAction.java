@@ -13,9 +13,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class BookAction {
-    public static void ADDBOOK(String title, String nameAuthor, Date dateEdition, String Designation){
+    public static void ADDBOOK(String title, String nameAuthor, Date dateEdition){
         Connection connection = connectionToDatabase.getInstance();
-        String query = "INSERT INTO Livre(Titre_Ouvrage, Nom_Auteur, Designation, Date_Edition) VALUES(?,?,?,?)";
+        String query = "INSERT INTO Livre(Titre_Ouvrage, Nom_Auteur, Date_Edition) VALUES(?,?,?)";
 
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -23,7 +23,6 @@ public class BookAction {
 
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, nameAuthor);
-            preparedStatement.setString(3, Designation);
             preparedStatement.setDate(4, dateEdition);
 
             preparedStatement.executeUpdate();
@@ -48,7 +47,7 @@ public class BookAction {
             ResultSet resultSet = statement.executeQuery(query);
             Livre livre;
             while (resultSet.next()){
-                livre = new Livre(resultSet.getInt("Id_Ouvrage"), resultSet.getString("Titre_Ouvrage"), resultSet.getString("Nom_Auteur"), resultSet.getString("Designation"), resultSet.getDate("Date_Edition"), resultSet.getBoolean("Disponible"), resultSet.getInt("NbFoisPret"));
+                livre = new Livre(resultSet.getInt("Id_Ouvrage"), resultSet.getString("Titre_Ouvrage"), resultSet.getString("Nom_Auteur"), resultSet.getDate("Date_Edition"), resultSet.getBoolean("Disponible"), resultSet.getInt("NbFoisPret"));
                 allBook.add(livre);
             }
         }
@@ -59,7 +58,7 @@ public class BookAction {
         return allBook;
     }
 
-    public static void showListBook(TableView tabListBook, TableColumn idLivre, TableColumn titreLivre, TableColumn auteurLivre,TableColumn designation, TableColumn dateEdition, TableColumn disponible){
+    public static void showListBook(TableView tabListBook, TableColumn idLivre, TableColumn titreLivre, TableColumn auteurLivre, TableColumn dateEdition, TableColumn disponible){
         ObservableList<Livre> ListBook = GetALLBook();
 
         idLivre.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Livre, Integer>, ObservableValue<String>>() {
@@ -73,7 +72,6 @@ public class BookAction {
         });
         titreLivre.setCellValueFactory(new PropertyValueFactory<Livre, String>("Titre_Ouvrage"));
         auteurLivre.setCellValueFactory(new PropertyValueFactory<Livre, String>("Nom_Auteur"));
-        designation.setCellValueFactory(new PropertyValueFactory<Livre, String>("Designation"));
         dateEdition.setCellValueFactory(new PropertyValueFactory<Livre, Date>("Date_Edition"));
         disponible.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Livre, Boolean>, ObservableValue<String>>() {
             @Override
@@ -98,9 +96,9 @@ public class BookAction {
     }
 
 
-    public static void UpdateBook(int IdBook, String TitleBook, String AuthorName, Date DateEdtion, String Designation){
+    public static void UpdateBook(int IdBook, String TitleBook, String AuthorName, Date DateEdtion){
         Connection connection = connectionToDatabase.getInstance();
-        String query = "UPDATE Livre SET Titre_Ouvrage = ?, Nom_Auteur = ?, Designation = ?, Date_Edition = ?";
+        String query = "UPDATE Livre SET Titre_Ouvrage = ?, Nom_Auteur = ?, Date_Edition = ?";
         query += " WHERE Id_Ouvrage="+IdBook+"";
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -108,7 +106,6 @@ public class BookAction {
 
             preparedStatement.setString(1, TitleBook);
             preparedStatement.setString(2, AuthorName);
-            preparedStatement.setString(3, Designation);
             preparedStatement.setDate(4, DateEdtion);
 
             preparedStatement.executeUpdate();
@@ -147,7 +144,7 @@ public class BookAction {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()){
-                Livre livre = new Livre(resultSet.getInt("Id_Ouvrage"), resultSet.getString("Titre_Ouvrage"), resultSet.getString("Nom_Auteur"), resultSet.getString("Designation"), resultSet.getDate("Date_Edition"), resultSet.getBoolean("Disponible"), resultSet.getInt("NbFoisPret"));
+                Livre livre = new Livre(resultSet.getInt("Id_Ouvrage"), resultSet.getString("Titre_Ouvrage"), resultSet.getString("Nom_Auteur"), resultSet.getDate("Date_Edition"), resultSet.getBoolean("Disponible"), resultSet.getInt("NbFoisPret"));
                 TabListLivre.getItems().add(livre);
             }
         }
@@ -179,7 +176,7 @@ public class BookAction {
 
             Livre livre;
             while (resultSet.next()){
-                livre = new Livre(resultSet.getInt("Id_Ouvrage"), resultSet.getString("Titre_Ouvrage"), resultSet.getString("Nom_Auteur"), resultSet.getString("Designation"), resultSet.getDate("Date_Edition"), resultSet.getBoolean("Disponible"), resultSet.getInt("NbFoisPret"));
+                livre = new Livre(resultSet.getInt("Id_Ouvrage"), resultSet.getString("Titre_Ouvrage"), resultSet.getString("Nom_Auteur"), resultSet.getDate("Date_Edition"), resultSet.getBoolean("Disponible"), resultSet.getInt("NbFoisPret"));
                 Livre.add(livre);
             }
         }
@@ -191,7 +188,7 @@ public class BookAction {
     }
 
 
-    public static void resultOuvrageSearch(TableView tabListBook, TableColumn idLivre, TableColumn titreLivre, TableColumn auteurLivre,TableColumn designation, TableColumn dateEdition, TableColumn disponible,
+    public static void resultOuvrageSearch(TableView tabListBook, TableColumn idLivre, TableColumn titreLivre, TableColumn auteurLivre, TableColumn dateEdition, TableColumn disponible,
                                            TextField titre, TextField auteur){
         ObservableList<Livre> resultSearch = searchForLivre(titre, auteur);
         idLivre.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Livre, Integer>, ObservableValue<String>>() {
@@ -205,7 +202,6 @@ public class BookAction {
         });
         titreLivre.setCellValueFactory(new PropertyValueFactory<Livre, String>("Titre_Ouvrage"));
         auteurLivre.setCellValueFactory(new PropertyValueFactory<Livre, String>("Nom_Auteur"));
-        designation.setCellValueFactory(new PropertyValueFactory<Livre, String>("Designation"));
         dateEdition.setCellValueFactory(new PropertyValueFactory<Livre, Date>("Date_Edition"));
         disponible.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Livre, Boolean>, ObservableValue<String>>() {
             @Override
