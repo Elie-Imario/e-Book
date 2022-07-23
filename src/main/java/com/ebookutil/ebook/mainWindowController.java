@@ -115,6 +115,8 @@ public class mainWindowController implements Initializable {
     @FXML private Button BtnupdatePswrd, btnCancelUpdatePswrd;
     @FXML private Label errorMsgChangePswrd;
 
+    //BtnExport result to pdfFile
+    @FXML private Button btnExportListUser, btnExportListBook, btnExportListPret;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -261,6 +263,14 @@ public class mainWindowController implements Initializable {
         reinitialiserSearch.setOnMouseClicked((ActionEvent)->{
             LecteurAction.resetToNormal(TabListLecteur, readerNameSearch, fonctionReaderSearch, mobileReaderSearch);
             GETListLecteurAction();
+        });
+
+        btnExportListUser.setOnMouseClicked((ActionEvent)->{
+            try{
+                LecteurAction.Export_ListLecteur_toPDF();
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
         });
 
         totalLecteur.setText(Integer.valueOf(LecteurAction.GetTotalLecteur()).toString());

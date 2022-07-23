@@ -1,6 +1,7 @@
 package com.ebookutil.util;
 
 import com.ebookutil.entity.Lecteur;
+import com.itextpdf.text.DocumentException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -9,6 +10,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -228,6 +231,32 @@ public class LecteurAction {
             tableLecteur.setItems(resultSearch);
         }
 
+    }
+
+    public static void Export_ListLecteur_toPDF() throws FileNotFoundException, DocumentException, IOException {
+        generatePDF _pdf = new generatePDF("Liste des lecteurs", 4);
+        _pdf.addTitle("LISTE DES LECTEURS");
+
+        ObservableList<String> tableListLecteurItems = FXCollections.observableArrayList();
+        tableListLecteurItems.add("N°Lecteur");
+        tableListLecteurItems.add("Nom du Lecteur");
+        tableListLecteurItems.add("Fonction");
+        tableListLecteurItems.add("Mobile");
+
+        _pdf.addHeaderRow(tableListLecteurItems);
+        tableListLecteurItems.clear();
+
+        ObservableList<Lecteur> ALLlecteur = getAllLecteur();
+        for(Lecteur lecteur : ALLlecteur){
+            tableListLecteurItems.add("LEC-"+lecteur.getId());
+            tableListLecteurItems.add(lecteur.getNom_Lecteur());
+            tableListLecteurItems.add(lecteur.getFonction());
+            tableListLecteurItems.add(lecteur.getMobile());
+            _pdf.addRow(tableListLecteurItems);
+            tableListLecteurItems.clear();
+        }
+        _pdf.addTable();
+        _pdf.generate();
     }
 
     public static int GetTotalLecteur(){

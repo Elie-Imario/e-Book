@@ -701,6 +701,118 @@
                                     </ScrollPane>
                                  </children>
                               </VBox>
+                              <VBox fx:id="addOuvrageView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
+                                 <children>
+                                    <VBox prefWidth="824.0">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="56.0" prefWidth="854.0" styleClass="title-lead" stylesheets="@css/Title-lead.css" text="AJOUT D'UN NOUVEAU OUVRAGE">
+                                             <font>
+                                                <Font name="Microsoft Sans Serif" size="12.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </Label>
+                                          <VBox prefWidth="784.0" style="-fx-background-color: white;" styleClass="addReader">
+                                             <children>
+                                                <VBox alignment="CENTER" prefWidth="375.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+                                                         <children>
+                                                            <Label prefHeight="33.0" prefWidth="160.0" styleClass="label-Form" text="Titre de l'ouvrage  :">
+                                                               <padding>
+                                                                  <Insets right="20.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <TextField fx:id="titleBook" prefHeight="32.0" prefWidth="249.0" promptText="Titre de l'Ouvrage" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets left="195.0" right="195.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label prefHeight="33.0" prefWidth="160.0" styleClass="label-Form" text="Nom de l'Auteur : ">
+                                                               <padding>
+                                                                  <Insets right="20.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <TextField fx:id="AuthorName" prefHeight="32.0" prefWidth="248.0" promptText="Nom de l'Auteur" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets left="195.0" right="195.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="127.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label prefHeight="33.0" prefWidth="160.0" styleClass="label-Form" text="Date d'édition :">
+                                                               <padding>
+                                                                  <Insets right="20.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <DatePicker fx:id="dateEdtion" editable="false" prefHeight="32.0" prefWidth="150.0" promptText="jj/mm/aa" />
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets left="195.0" right="195.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="794.0">
+                                                         <children>
+                                                            <Button fx:id="btnADDBook" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" styleClass="btnConfirm" text="Enregistrer" textFill="WHITE">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                               <graphic>
+                                                                  <FontAwesomeIcon fill="WHITE" iconName="SAVE" />
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button fx:id="btnCancelAddBook" mnemonicParsing="false" prefHeight="35.0" prefWidth="129.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                               <graphic>
+                                                                  <FontAwesomeIcon fill="WHITE" iconName="TIMES" />
+                                                               </graphic>
+                                                               <HBox.margin>
+                                                                  <Insets left="15.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                      </HBox>
+                                                      <Label fx:id="errorMsgOuvrage" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="30.0" styleClass="error-msg">
+                                                         <graphic>
+                                                            <FontAwesomeIcon fill="RED" iconName="INFO_CIRCLE" />
+                                                         </graphic>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" top="20.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets top="40.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                             </VBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
                               <VBox fx:id="createReaderView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
                                  <children>
                                     <VBox prefWidth="824.0">
@@ -928,7 +1040,7 @@
                                                    <children>
                                                       <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="780.0">
                                                          <children>
-                                                            <Button fx:id="btnExportListUser1" layoutX="493.0" layoutY="17.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" styleClass="btnRenitialize" text="Exporter" textFill="WHITE">
+                                                            <Button fx:id="btnExportListBook" layoutX="493.0" layoutY="17.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" styleClass="btnRenitialize" text="Exporter" textFill="WHITE">
                                                                <graphic>
                                                                   <FontAwesomeIcon fill="WHITE" iconName="FILE_PDF_ALT" size="1.5em" />
                                                                </graphic>
@@ -988,118 +1100,6 @@
                                           </VBox>
                                        </content>
                                     </ScrollPane>
-                                 </children>
-                              </VBox>
-                              <VBox fx:id="addOuvrageView" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5f5f5;">
-                                 <children>
-                                    <VBox prefWidth="824.0">
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="56.0" prefWidth="854.0" styleClass="title-lead" stylesheets="@css/Title-lead.css" text="AJOUT D'UN NOUVEAU OUVRAGE">
-                                             <font>
-                                                <Font name="Microsoft Sans Serif" size="12.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="20.0" />
-                                             </padding>
-                                          </Label>
-                                          <VBox prefWidth="784.0" style="-fx-background-color: white;" styleClass="addReader">
-                                             <children>
-                                                <VBox alignment="CENTER" prefWidth="375.0">
-                                                   <children>
-                                                      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
-                                                         <children>
-                                                            <Label prefHeight="33.0" prefWidth="160.0" styleClass="label-Form" text="Titre de l'ouvrage  :">
-                                                               <padding>
-                                                                  <Insets right="20.0" />
-                                                               </padding>
-                                                            </Label>
-                                                            <TextField fx:id="titleBook" prefHeight="32.0" prefWidth="249.0" promptText="Titre de l'Ouvrage" />
-                                                         </children>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets left="195.0" right="195.0" />
-                                                         </padding>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="60.0" prefWidth="200.0">
-                                                         <children>
-                                                            <Label prefHeight="33.0" prefWidth="160.0" styleClass="label-Form" text="Nom de l'Auteur : ">
-                                                               <padding>
-                                                                  <Insets right="20.0" />
-                                                               </padding>
-                                                            </Label>
-                                                            <TextField fx:id="AuthorName" prefHeight="32.0" prefWidth="248.0" promptText="Nom de l'Auteur" />
-                                                         </children>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets left="195.0" right="195.0" />
-                                                         </padding>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="127.0" prefWidth="200.0">
-                                                         <children>
-                                                            <Label prefHeight="33.0" prefWidth="160.0" styleClass="label-Form" text="Date d'édition :">
-                                                               <padding>
-                                                                  <Insets right="20.0" />
-                                                               </padding>
-                                                            </Label>
-                                                            <DatePicker fx:id="dateEdtion" editable="false" prefHeight="32.0" prefWidth="150.0" promptText="jj/mm/aa" />
-                                                         </children>
-                                                         <VBox.margin>
-                                                            <Insets bottom="20.0" />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets left="195.0" right="195.0" />
-                                                         </padding>
-                                                      </HBox>
-                                                      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="794.0">
-                                                         <children>
-                                                            <Button fx:id="btnADDBook" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" styleClass="btnConfirm" text="Enregistrer" textFill="WHITE">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                               <graphic>
-                                                                  <FontAwesomeIcon fill="WHITE" iconName="SAVE" />
-                                                               </graphic>
-                                                            </Button>
-                                                            <Button fx:id="btnCancelAddBook" mnemonicParsing="false" prefHeight="35.0" prefWidth="129.0" styleClass="btnCancel" text="Annuler" textFill="WHITE">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                               <graphic>
-                                                                  <FontAwesomeIcon fill="WHITE" iconName="TIMES" />
-                                                               </graphic>
-                                                               <HBox.margin>
-                                                                  <Insets left="15.0" />
-                                                               </HBox.margin>
-                                                            </Button>
-                                                         </children>
-                                                      </HBox>
-                                                      <Label fx:id="errorMsgOuvrage" alignment="CENTER" contentDisplay="TEXT_ONLY" prefHeight="30.0" styleClass="error-msg">
-                                                         <graphic>
-                                                            <FontAwesomeIcon fill="RED" iconName="INFO_CIRCLE" />
-                                                         </graphic>
-                                                         <VBox.margin>
-                                                            <Insets top="20.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets bottom="20.0" top="20.0" />
-                                                   </VBox.margin>
-                                                   <padding>
-                                                      <Insets top="40.0" />
-                                                   </padding>
-                                                </VBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                       </children>
-                                    </VBox>
                                  </children>
                               </VBox>
                               <VBox fx:id="pretView" prefHeight="860.0" prefWidth="838.0" style="-fx-background-color: #f5f5f5;">
@@ -1280,7 +1280,7 @@
                                                                         <Insets right="5.0" />
                                                                      </HBox.margin>
                                                                   </Button>
-                                                                  <Button fx:id="btnRenitialize111" layoutX="493.0" layoutY="17.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" styleClass="btnRenitialize" text="Exporter" textFill="WHITE">
+                                                                  <Button fx:id="btnExportListPret" layoutX="493.0" layoutY="17.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" styleClass="btnRenitialize" text="Exporter" textFill="WHITE">
                                                                      <graphic>
                                                                         <FontAwesomeIcon fill="WHITE" iconName="FILE_PDF_ALT" size="1.5em" />
                                                                      </graphic>
