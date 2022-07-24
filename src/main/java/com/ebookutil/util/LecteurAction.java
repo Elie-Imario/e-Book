@@ -6,7 +6,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
@@ -16,6 +19,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class LecteurAction {
 
@@ -234,7 +239,11 @@ public class LecteurAction {
     }
 
     public static void Export_ListLecteur_toPDF() throws FileNotFoundException, DocumentException, IOException {
-        generatePDF _pdf = new generatePDF("Liste des lecteurs", 4);
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHms");
+        String formatedDate = now.format(dateTimeFormatter);
+        generatePDF _pdf = new generatePDF("liste_lecteurs_"+formatedDate, 4);
+        _pdf.addAppIco();
         _pdf.addTitle("LISTE DES LECTEURS");
 
         ObservableList<String> tableListLecteurItems = FXCollections.observableArrayList();
@@ -256,6 +265,10 @@ public class LecteurAction {
             tableListLecteurItems.clear();
         }
         _pdf.addTable();
+
+        _pdf.addTableDescription("Affichage de l'élément 0 à 0 sur 0 élément");
+        tableListLecteurItems.clear();
+
         _pdf.generate();
     }
 
