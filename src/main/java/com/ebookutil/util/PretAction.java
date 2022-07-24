@@ -1,6 +1,7 @@
 package com.ebookutil.util;
 
 import com.ebookutil.entity.Pret;
+import com.itextpdf.text.DocumentException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -10,7 +11,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PretAction {
@@ -698,6 +703,49 @@ public class PretAction {
 
         return titreOuvrage;
 
+    }
+
+    public static void Export_ListPret_toPDF() throws FileNotFoundException, DocumentException, IOException {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHms");
+        String formatedDate = now.format(dateTimeFormatter);
+        generatePDF _pdf = new generatePDF("liste_prêts_"+formatedDate, 8);
+        _pdf.addAppIco();
+        _pdf.addTitle("LISTE DES PRETS");
+
+        ObservableList<String> tableListPretItems = FXCollections.observableArrayList();
+        tableListPretItems.add("N°Pret");
+        tableListPretItems.add("Titre de l'ouvrage");
+        tableListPretItems.add("Nom du lecteur");
+        tableListPretItems.add("Date début");
+        tableListPretItems.add("Date fin");
+        tableListPretItems.add("Durée Prêt");
+        tableListPretItems.add("Etat");
+        tableListPretItems.add("Amende");
+
+        _pdf.addHeaderRow(tableListPretItems);
+        tableListPretItems.clear();
+
+        ObservableList<Pret> ALLPret = GetAllPret();
+        for(Pret pret : ALLPret){
+            tableListPretItems.add("P/"+pret.getId_Pret());
+            tableListPretItems.add(GetTitreOuvrage(pret.getId_Pret()));
+            tableListPretItems.add(GetNomLecteur(pret.getId_Pret()));
+            tableListPretItems.add(pret.getDateDebPret().toString());
+            tableListPretItems.add(pret.getDateFinPret().toString());
+            tableListPretItems.add(Integer.valueOf(pret.getNbJourPret()).toString());
+            tableListPretItems.add((pret.isEtat())? "En cours" : "Terminé");
+            tableListPretItems.add(Integer.valueOf(pret.getAmende()).toString());
+
+            _pdf.addRow(tableListPretItems);
+            tableListPretItems.clear();
+        }
+        _pdf.addTable();
+
+        _pdf.addTableDescription("Affichage de l'élément 0 à 0 sur 0 élément");
+        tableListPretItems.clear();
+
+        _pdf.generate();
     }
 
     public static int GetTotalPret(){

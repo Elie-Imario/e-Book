@@ -383,6 +383,14 @@ public class mainWindowController implements Initializable {
             GETListPretAction();
         });
 
+        btnExportListPret.setOnMouseClicked((ActionEvent)->{
+            try{
+                PretAction.Export_ListPret_toPDF();
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        });
+
         totalPret.setText(Integer.valueOf(PretAction.GetTotalPret()).toString());
 
 
