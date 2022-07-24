@@ -328,6 +328,15 @@ public class mainWindowController implements Initializable {
             GETListBookAction();
         });
 
+        btnExportListBook.setOnMouseClicked((ActionEvent)->{
+            try{
+                BookAction.Export_ListBook_toPDF();
+
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        });
+
         totalLivrePret.setText(Integer.valueOf(BookAction.GetTotalLivrePret()).toString());
 
 

@@ -1,15 +1,23 @@
 package com.ebookutil.util;
 
 import com.ebookutil.entity.Livre;
+import com.itextpdf.text.DocumentException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class BookAction {
@@ -260,6 +268,42 @@ public class BookAction {
             e.printStackTrace();
         }
         return NbFoisPretBook;
+    }
+
+    public static void Export_ListBook_toPDF() throws FileNotFoundException, DocumentException, IOException {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHms");
+        String formatedDate = now.format(dateTimeFormatter);
+        generatePDF _pdf = new generatePDF("liste_des_Ouvrages_"+formatedDate, 5);
+        _pdf.addAppIco();
+        _pdf.addTitle("LISTE DES OUVRAGES");
+
+        ObservableList<String> tableListOuvrageItems = FXCollections.observableArrayList();
+        tableListOuvrageItems.add("N°Ouvrage");
+        tableListOuvrageItems.add("Titre");
+        tableListOuvrageItems.add("Auteur");
+        tableListOuvrageItems.add("Date édition");
+        tableListOuvrageItems.add("Disponible");
+
+        _pdf.addHeaderRow(tableListOuvrageItems);
+        tableListOuvrageItems.clear();
+
+        ObservableList<Livre> AllBook = GetALLBook();
+        for(Livre livre : AllBook){
+            tableListOuvrageItems.add("L-"+livre.getId_Ouvrage());
+            tableListOuvrageItems.add(livre.getTitre_Ouvrage());
+            tableListOuvrageItems.add(livre.getNom_Auteur());
+            tableListOuvrageItems.add(livre.getDate_Edition().toString());
+            tableListOuvrageItems.add((livre.getDisponible()) ?  "Oui" :  "Non");
+            _pdf.addRow(tableListOuvrageItems);
+            tableListOuvrageItems.clear();
+        }
+        _pdf.addTable();
+
+        _pdf.addTableDescription("Affichage de l'élément 0 à 0 sur 0 élément");
+        tableListOuvrageItems.clear();
+
+        _pdf.generate();
     }
 
 
