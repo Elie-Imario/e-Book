@@ -267,7 +267,7 @@ public class mainWindowController implements Initializable {
 
         btnExportListUser.setOnMouseClicked((ActionEvent)->{
             try{
-                LecteurAction.Export_ListLecteur_toPDF();
+                LecteurAction.Export_ListLecteur_toPDF(mainWindow);
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }
@@ -330,7 +330,7 @@ public class mainWindowController implements Initializable {
 
         btnExportListBook.setOnMouseClicked((ActionEvent)->{
             try{
-                BookAction.Export_ListBook_toPDF();
+                BookAction.Export_ListBook_toPDF(mainWindow);
 
             }catch (Exception e){
                 System.out.println(e.getMessage());
@@ -385,7 +385,7 @@ public class mainWindowController implements Initializable {
 
         btnExportListPret.setOnMouseClicked((ActionEvent)->{
             try{
-                PretAction.Export_ListPret_toPDF();
+                PretAction.Export_ListPret_toPDF(mainWindow);
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }

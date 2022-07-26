@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 import java.io.FileNotFoundException;
@@ -270,7 +271,7 @@ public class BookAction {
         return NbFoisPretBook;
     }
 
-    public static void Export_ListBook_toPDF() throws FileNotFoundException, DocumentException, IOException {
+    public static void Export_ListBook_toPDF(VBox modalOwner) throws FileNotFoundException, DocumentException, IOException {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHms");
         String formatedDate = now.format(dateTimeFormatter);
@@ -303,7 +304,7 @@ public class BookAction {
         _pdf.addTableDescription("Affichage de l'élément 0 à 0 sur 0 élément");
         tableListOuvrageItems.clear();
 
-        _pdf.generate();
+        _pdf.generate(modalOwner);
     }
 
 

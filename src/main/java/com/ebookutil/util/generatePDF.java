@@ -2,20 +2,18 @@ package com.ebookutil.util;
 
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
-import com.itextpdf.text.*;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.layout.VBox;
 
 import java.awt.*;
 import java.io.*;
 import java.net.MalformedURLException;
-import java.util.Optional;
 
 
 
@@ -158,7 +156,7 @@ public class generatePDF {
         document.add(table);
     }
 
-    public void generate() throws DocumentException {
+    public void generate(VBox modalOwner) throws DocumentException {
         document.close();
         try {
             file.close();
@@ -167,21 +165,11 @@ public class generatePDF {
         }
         try {
             if (Desktop.isDesktopSupported()) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Ouverture");
-                alert.setContentText("Vous-voulez ouvrir le fichier conçu?\n"+System.getProperty("user.home")+"\\Downloads\\"+nom+".pdf"+">");
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    File f;
-                    f = new File(System.getProperty("user.home") + "\\Downloads\\" + nom + ".pdf");
-                    Desktop.getDesktop().open(f);
-                }
+                AlertMessage.ConfirmAlert(modalOwner, nom);
             } else {
-                Alert alert_1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert_1.setTitle("Fichier crée");
-                alert_1.setContentText("Le fichier conçu est:\n<" + System.getProperty("user.home") + "\\Downloads\\" + nom + ".pdf" + ">");
+                AlertMessage.AlertSuccess(modalOwner, "Le fichier a été creé dans : <" + System.getProperty("user.home") + "\\Downloads\\" + nom + ".pdf" + ">");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
