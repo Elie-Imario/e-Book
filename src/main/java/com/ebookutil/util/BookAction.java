@@ -32,7 +32,7 @@ public class BookAction {
 
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, nameAuthor);
-            preparedStatement.setDate(4, dateEdition);
+            preparedStatement.setDate(3, dateEdition);
 
             preparedStatement.executeUpdate();
 
@@ -115,7 +115,7 @@ public class BookAction {
 
             preparedStatement.setString(1, TitleBook);
             preparedStatement.setString(2, AuthorName);
-            preparedStatement.setDate(4, DateEdtion);
+            preparedStatement.setDate(3, DateEdtion);
 
             preparedStatement.executeUpdate();
 
