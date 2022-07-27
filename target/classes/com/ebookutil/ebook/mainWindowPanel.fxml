@@ -1137,7 +1137,7 @@
                                                                                                       <Insets right="20.0" />
                                                                                                    </padding>
                                                                                                 </Label>
-                                                                                                <TextField prefHeight="32.0" prefWidth="249.0" promptText="Numéro Prêt" />
+                                                                                                <TextField fx:id="numPretSearch" prefHeight="32.0" prefWidth="249.0" promptText="Numéro Prêt" />
                                                                                              </children>
                                                                                              <VBox.margin>
                                                                                                 <Insets bottom="5.0" />
@@ -1153,7 +1153,7 @@
                                                                                                       <Insets right="20.0" />
                                                                                                    </padding>
                                                                                                 </Label>
-                                                                                                <TextField prefHeight="32.0" prefWidth="249.0" promptText="Lecteur" />
+                                                                                                <TextField fx:id="nomLecteurSearch" prefHeight="32.0" prefWidth="249.0" promptText="Lecteur" />
                                                                                              </children>
                                                                                              <VBox.margin>
                                                                                                 <Insets bottom="5.0" />
@@ -1173,12 +1173,12 @@
                                                                                                       <Insets right="20.0" />
                                                                                                    </padding>
                                                                                                 </Label>
-                                                                                                <DatePicker fx:id="dateDeb" prefHeight="32.0" prefWidth="122.0" promptText="Debut">
+                                                                                                <DatePicker fx:id="dateDebSearch" editable="false" prefHeight="32.0" prefWidth="122.0" promptText="Debut">
                                                                                                    <HBox.margin>
                                                                                                       <Insets />
                                                                                                    </HBox.margin>
                                                                                                 </DatePicker>
-                                                                                                <DatePicker prefHeight="32.0" prefWidth="122.0" promptText="Fin">
+                                                                                                <DatePicker fx:id="dateFinSearch" editable="false" prefHeight="32.0" prefWidth="122.0" promptText="Fin">
                                                                                                    <HBox.margin>
                                                                                                       <Insets left="5.0" />
                                                                                                    </HBox.margin>
@@ -1198,7 +1198,7 @@
                                                                                                       <Insets right="20.0" />
                                                                                                    </padding>
                                                                                                 </Label>
-                                                                                                <TextField prefHeight="32.0" prefWidth="220.0" promptText="Titre de l'Ouvrage" />
+                                                                                                <TextField fx:id="titreOuvragePretSearch" prefHeight="32.0" prefWidth="220.0" promptText="Titre de l'Ouvrage" />
                                                                                              </children>
                                                                                              <VBox.margin>
                                                                                                 <Insets />

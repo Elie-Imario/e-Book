@@ -103,6 +103,8 @@ public class mainWindowController implements Initializable {
     @FXML private TableColumn<Pret, Integer> AmendePret;
     @FXML private Label totalPret;
     //SEARCH Pret
+    @FXML private TextField numPretSearch, nomLecteurSearch, titreOuvragePretSearch;
+    @FXML private DatePicker dateDebSearch, dateFinSearch;
     @FXML private Button btnSearchPret, reinitialiserSearchPret;
 
 
@@ -376,10 +378,13 @@ public class mainWindowController implements Initializable {
                 deletePretAction(PretSelected);
             }
         });
-
+        btnSearchPret.setOnMouseClicked((ActionEvent)->{
+            PretAction.resultPretSearch(TabListPret , numPret, titreOuvrageEnPret, nomLecteurPret, dateDebPret, dateFinPret, nbJourPret, EtatPret, AmendePret,
+                    numPretSearch, nomLecteurSearch, dateDebSearch, dateFinSearch, titreOuvragePretSearch);
+        });
 
         reinitialiserSearchPret.setOnMouseClicked((ActionEvent)->{
-
+            PretAction.resetToNormal(TabListPret, numPretSearch, nomLecteurSearch, dateDebSearch, dateFinSearch, titreOuvragePretSearch);
             GETListPretAction();
         });
 
@@ -760,5 +765,6 @@ public class mainWindowController implements Initializable {
             e.printStackTrace();
         }
     }
+
 }
 

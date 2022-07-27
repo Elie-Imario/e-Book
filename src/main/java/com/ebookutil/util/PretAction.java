@@ -6,8 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -607,6 +606,177 @@ public class PretAction {
         }
     }
 
+    public static ObservableList<Pret> SearchForPret(TextField numPret, TextField nomLecteur, DatePicker dateDeb, DatePicker dateFin, TextField titreOuvrage){
+        ObservableList<Pret> Pret = FXCollections.observableArrayList();
+        Connection connection = connectionToDatabase.getInstance();
+        String query = "";
+        if((numPret.getText().isBlank()) || (nomLecteur.getText().isBlank()) || (dateDeb.getValue() == null) || (dateFin.getValue() == null) || (titreOuvrage.getText().isBlank()) ){
+            if(numPret.getText() != null && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank()) ){
+                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+"";
+            }
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
+                int IdLecteur = GetIdLecteur(nomLecteur.getText());
+                query = "SELECT * FROM Pret WHERE Id_Lecteur="+ IdLecteur +"";
+            }
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue()!=null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
+                query = "SELECT * FROM Pret WHERE DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"";
+            }
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue()!=null) && (titreOuvrage.getText().isBlank())){
+                query = "SELECT * FROM Pret WHERE DateFinPret="+"'"+Date.valueOf(dateFin.getValue())+"'"+"";
+            }
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText()!= null)){
+                int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
+                query = "SELECT * FROM Pret WHERE Id_Ouvrage="+ IdOuvrage +"";
+            }
+
+            //2 params
+            else if((numPret.getText() != null ) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
+                int IdLecteur = GetIdLecteur(nomLecteur.getText());
+                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +"";
+            }
+            else if((numPret.getText() != null ) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() != null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
+                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"";
+            }
+            else if((numPret.getText() != null ) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
+                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND DateFInPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+"";
+            }
+            else if((numPret.getText() != null ) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText()!= null)){
+                int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
+                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Ouvrage="+ IdOuvrage +"";
+            }
+            /**/
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null) && (dateFin.getValue().toString().isBlank()) && (titreOuvrage.getText().isBlank())){
+                int IdLecteur = GetIdLecteur(nomLecteur.getText());
+                query = "";
+            }
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue().toString().isBlank()) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
+                int IdLecteur = GetIdLecteur(nomLecteur.getText());
+                query = "";
+            }
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue().toString().isBlank()) && (dateFin.getValue().toString().isBlank()) && (titreOuvrage.getText()!= null)){
+                int IdLecteur = GetIdLecteur(nomLecteur.getText());
+                int IdOuvrage = GetIdOuvrage(nomLecteur.getText());
+                query = "";
+            }
+            /**/
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue().toString() != null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
+                query = "";
+            }
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue().toString() != null) && (dateFin.getValue().toString().isBlank()) && (titreOuvrage.getText()!= null)){
+                query = "";
+            }
+            /**/
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue().toString().isBlank()) && (dateFin.getValue().toString() != null) && (titreOuvrage.getText()!= null)){
+                query = "";
+            }
+
+            //3params
+            else if((numPret.getText() != null ) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null) && (dateFin.getValue().toString().isBlank()) && (titreOuvrage.getText().isBlank())){
+                int IdLecteur = GetIdLecteur(nomLecteur.getText());
+                query = "";
+            }
+            else if((numPret.getText() != null ) && (nomLecteur.getText() != null) && (dateDeb.getValue().toString().isBlank()) && (dateFin.getValue().toString() != null) && (titreOuvrage.getText().isBlank())){
+                int IdLecteur = GetIdLecteur(nomLecteur.getText());
+                query = "";
+            }
+            else if((numPret.getText() != null) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() != null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
+                query = "";
+            }
+            else if((numPret.getText() != null) && (nomLecteur.getText() != null) && (dateDeb.getValue().toString().isBlank()) && (dateFin.getValue().toString().isBlank()) && (titreOuvrage.getText() != null)){
+                int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
+                query = "";
+            }
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
+                int IdLecteur = GetIdLecteur(nomLecteur.getText());
+                query = "";
+            }
+            else if((numPret.getText().isBlank() ) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() != null) && (dateFin.getValue() != null) && (titreOuvrage.getText() != null)){
+                int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
+                query = "";
+            }
+            else if((numPret.getText() != null) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue().toString().isBlank()) && (dateFin.getValue() != null) && (titreOuvrage.getText() != null)){
+                int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
+                query = "";
+            }
+
+            //4params
+
+        }
+        else{
+            query = "";
+        }
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet resultSet = statement.executeQuery(query);
+
+            Pret pret;
+            while (resultSet.next()){
+                pret = new Pret(resultSet.getInt("Id_Pret"), resultSet.getInt("Id_Lecteur"), resultSet.getInt("Id_Ouvrage"), resultSet.getDate("DateDebPret"), resultSet.getDate("DateFinPret"), resultSet.getInt("NbJourPret"), resultSet.getBoolean("Etat"), resultSet.getInt("Amende"));
+                Pret.add(pret);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return Pret;
+    }
+
+    public static void resultPretSearch(TableView tabListPret, TableColumn idPret, TableColumn titreLivre, TableColumn nomLecteur, TableColumn dateDeb, TableColumn dateFin, TableColumn Duree, TableColumn Etat, TableColumn Amende,
+                                        TextField _numPret, TextField _nomLecteur, DatePicker _dateDeb, DatePicker _dateFin, TextField _titreOuvrage){
+        ObservableList<Pret> resultSearch = SearchForPret(_numPret, _nomLecteur, _dateDeb, _dateFin, _titreOuvrage);
+        idPret.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Pret, Integer>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Pret, Integer> param) {
+                Pret pret = param.getValue();
+                int IdPret = pret.getId_Pret();
+
+                return new SimpleStringProperty("P/"+IdPret);
+            }
+        });
+        titreLivre.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Pret, Integer>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Pret, Integer> param) {
+                Pret pret = param.getValue();
+                String _titreOuvrage = GetTitreOuvrage(pret.getId_Ouvrage());
+                return new SimpleStringProperty(_titreOuvrage);
+            }
+        });
+        nomLecteur.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Pret, Integer>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Pret, Integer> param) {
+                Pret pretValue = param.getValue();
+                String _nomLecteur = GetNomLecteur(pretValue.getId_Lecteur());
+                return new SimpleStringProperty(_nomLecteur);
+            }
+        });
+        dateDeb.setCellValueFactory(new PropertyValueFactory<Pret, Date>("DateDebPret"));
+        dateFin.setCellValueFactory(new PropertyValueFactory<Pret, Date>("DateFinPret"));
+        Duree.setCellValueFactory(new PropertyValueFactory<Pret, Integer>("NbJourPret"));
+        Etat.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Pret, Boolean>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Pret, Boolean> param) {
+                Pret pret = param.getValue();
+                if(pret.isEtat()){
+                    return new SimpleStringProperty("En cours");
+                }
+                else {
+                    return new SimpleStringProperty("Terminé");
+                }
+            }
+        });
+        Amende.setCellValueFactory(new PropertyValueFactory<Pret, Integer>("Amende"));
+
+
+        if(resultSearch.isEmpty()){
+            tabListPret.getItems().clear();
+            tabListPret.setPlaceholder(new Label("Aucun Lecteur ne correspond à vos critères de recherche"));
+            tabListPret.setPrefHeight(100);
+        }
+        else {
+            tabListPret.setPrefHeight(337);
+            tabListPret.setItems(resultSearch);
+        }
+    }
+
     public static void DeletePret(int id){
         Connection connection = connectionToDatabase.getInstance();
         String query = "DELETE FROM Pret WHERE Id_Pret=?";
@@ -794,4 +964,13 @@ public class PretAction {
         }
     }
 
+
+    public static void resetToNormal(TableView tabListPret, TextField idPret, TextField nomLecteur, DatePicker dateDeb, DatePicker dateFin, TextField titreOuvrage){
+        idPret.clear();
+        nomLecteur.clear();
+        dateDeb.setValue(null);
+        dateFin.setValue(null);
+        titreOuvrage.clear();
+        tabListPret.setPrefHeight(337);
+    }
 }
