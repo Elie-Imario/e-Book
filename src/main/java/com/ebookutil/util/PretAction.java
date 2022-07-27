@@ -645,29 +645,31 @@ public class PretAction {
                 query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Ouvrage="+ IdOuvrage +"";
             }
             /**/
-            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null) && (dateFin.getValue().toString().isBlank()) && (titreOuvrage.getText().isBlank())){
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
-                query = "";
+                query = "SELECT * FROM Pret WHERE Id_Lecteur="+ IdLecteur +" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"";
             }
-            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue().toString().isBlank()) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
-                query = "";
+                query = "SELECT * FROM Pret WHERE Id_Lecteur="+ IdLecteur +" AND DateFinPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+"";
             }
-            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue().toString().isBlank()) && (dateFin.getValue().toString().isBlank()) && (titreOuvrage.getText()!= null)){
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText()!= null)){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
-                int IdOuvrage = GetIdOuvrage(nomLecteur.getText());
-                query = "";
+                int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
+                query = "SELECT * FROM Pret WHERE Id_Lecteur="+ IdLecteur +" AND Id_Ouvrage="+ IdOuvrage +"";
             }
             /**/
-            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue().toString() != null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
-                query = "";
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() != null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
+                query = "SELECT * FROM Pret WHERE DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" OR DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+"";
             }
-            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue().toString() != null) && (dateFin.getValue().toString().isBlank()) && (titreOuvrage.getText()!= null)){
-                query = "";
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() != null) && (dateFin.getValue() == null) && (titreOuvrage.getText() != null)){
+                int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
+                query = "SELECT * FROM Pret WHERE DateDebPret="+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
             }
             /**/
-            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue().toString().isBlank()) && (dateFin.getValue().toString() != null) && (titreOuvrage.getText()!= null)){
-                query = "";
+            else if((numPret.getText().isBlank()) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue() != null) && (titreOuvrage.getText() != null)){
+                int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
+                query = "SELECT * FROM Pret WHERE DateFinPret="+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
             }
 
             //3params
