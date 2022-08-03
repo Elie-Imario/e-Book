@@ -735,17 +735,19 @@ public class PretAction {
             else if((numPret.getText() != null) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null)  && (dateFin.getValue() != null) && (titreOuvrage.getText() != null)){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
                 int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateFinPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+"AND Id_Ouvrage="+ IdOuvrage +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateFinPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
             }
             else if((numPret.getText() != null) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null)  && (dateFin.getValue() == null) && (titreOuvrage.getText() != null)){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
                 int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"AND Id_Ouvrage="+ IdOuvrage +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
             }
 
         }
         else{
-            query = "";
+            int IdLecteur = GetIdLecteur(nomLecteur.getText());
+            int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
+            query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
         }
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
