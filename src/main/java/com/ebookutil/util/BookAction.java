@@ -22,6 +22,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class BookAction {
+    private static ObservableList<Livre> ListOuvrage;
+
+    public static ObservableList<Livre> getListOuvrage() {
+        return ListOuvrage;
+    }
+
+    public static void setListOuvrage(ObservableList<Livre> listOuvrage) {
+        ListOuvrage = listOuvrage;
+    }
+
     public static void ADDBOOK(String title, String nameAuthor, Date dateEdition){
         Connection connection = connectionToDatabase.getInstance();
         String query = "INSERT INTO Livre(Titre_Ouvrage, Nom_Auteur, Date_Edition) VALUES(?,?,?)";
@@ -68,7 +78,9 @@ public class BookAction {
     }
 
     public static void showListBook(TableView tabListBook, TableColumn idLivre, TableColumn titreLivre, TableColumn auteurLivre, TableColumn dateEdition, TableColumn disponible){
-        ObservableList<Livre> ListBook = GetALLBook();
+        setListOuvrage(GetALLBook());
+        ObservableList<Livre> ListBook = getListOuvrage();
+
 
         idLivre.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Livre, Integer>, ObservableValue<String>>() {
             @Override
@@ -199,7 +211,9 @@ public class BookAction {
 
     public static void resultOuvrageSearch(TableView tabListBook, TableColumn idLivre, TableColumn titreLivre, TableColumn auteurLivre, TableColumn dateEdition, TableColumn disponible,
                                            TextField titre, TextField auteur){
-        ObservableList<Livre> resultSearch = searchForLivre(titre, auteur);
+        setListOuvrage(searchForLivre(titre, auteur));
+        ObservableList<Livre> resultSearch = getListOuvrage();
+
         idLivre.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Livre, Integer>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Livre, Integer> param) {
@@ -253,6 +267,25 @@ public class BookAction {
         }
         return titreBook;
     }
+
+    public static int GetNbLivre(){
+        ArrayList NbFoisPretBook = new ArrayList<>();
+        Connection connection = connectionToDatabase.getInstance();
+        String query = "SELECT COUNT(Id_Ouvrage) as TotalLivre FROM Livre";
+        int Total = 0;
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (resultSet.next()){
+                Total = resultSet.getInt("TotalLivre");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return Total;
+    }
     public static ArrayList GetNbPretLivre(){
         ArrayList NbFoisPretBook = new ArrayList<>();
         Connection connection = connectionToDatabase.getInstance();
@@ -289,22 +322,28 @@ public class BookAction {
         _pdf.addHeaderRow(tableListOuvrageItems);
         tableListOuvrageItems.clear();
 
-        ObservableList<Livre> AllBook = GetALLBook();
-        for(Livre livre : AllBook){
-            tableListOuvrageItems.add("L-"+livre.getId_Ouvrage());
-            tableListOuvrageItems.add(livre.getTitre_Ouvrage());
-            tableListOuvrageItems.add(livre.getNom_Auteur());
-            tableListOuvrageItems.add(livre.getDate_Edition().toString());
-            tableListOuvrageItems.add((livre.getDisponible()) ?  "Oui" :  "Non");
-            _pdf.addRow(tableListOuvrageItems);
-            tableListOuvrageItems.clear();
+        ObservableList<Livre> AllBook = getListOuvrage();
+        if(AllBook.toArray().length < 1){
+            AlertMessage.WarningAlert(modalOwner, "Aucune donnée à exporter!!!");
         }
-        _pdf.addTable();
+        else{
+            for(Livre livre : AllBook){
+                tableListOuvrageItems.add("L-"+livre.getId_Ouvrage());
+                tableListOuvrageItems.add(livre.getTitre_Ouvrage());
+                tableListOuvrageItems.add(livre.getNom_Auteur());
+                tableListOuvrageItems.add(livre.getDate_Edition().toString());
+                tableListOuvrageItems.add((livre.getDisponible()) ?  "Oui" :  "Non");
+                _pdf.addRow(tableListOuvrageItems);
+                tableListOuvrageItems.clear();
+            }
+            _pdf.addTable();
 
-        _pdf.addTableDescription("Affichage de l'élément 0 à 0 sur 0 élément");
-        tableListOuvrageItems.clear();
+            _pdf.addTableDescription("Affichage de "+AllBook.toArray().length+" élément(s) sur "+ GetNbLivre());
+            tableListOuvrageItems.clear();
 
-        _pdf.generate(modalOwner);
+            _pdf.generate(modalOwner);
+        }
+
     }
 
 

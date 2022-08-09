@@ -25,6 +25,17 @@ import java.time.format.DateTimeFormatter;
 
 public class LecteurAction {
 
+
+    private static ObservableList<Lecteur> ListLecteur;
+
+    public static ObservableList<Lecteur> getListLecteur() {
+        return ListLecteur;
+    }
+
+    public static void setListLecteur(ObservableList<Lecteur> listLecteur) {
+        ListLecteur = listLecteur;
+    }
+
     public static void AddLecteur(String nomLecteur, String emailLecteur, String fonctionLecteur, String mobileLecteur){
         Connection connection = connectionToDatabase.getInstance();
         try {
@@ -73,7 +84,8 @@ public class LecteurAction {
     }
 
     public static void showListLecteur(TableView tableLecteur, TableColumn idLecteur, TableColumn nomLecteur, TableColumn fonctionLecteur, TableColumn mobileLecteur){
-        ObservableList<Lecteur> ALLlecteur = getAllLecteur();
+        setListLecteur(getAllLecteur());
+        ObservableList<Lecteur> ALLlecteur = getListLecteur();
         idLecteur.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Lecteur, Integer>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Lecteur, Integer> param) {
                 Lecteur lecteur = param.getValue();
@@ -214,7 +226,9 @@ public class LecteurAction {
 
     public static void resultLecteurSearch(TableView tableLecteur, TableColumn idLecteur, TableColumn nomLecteur, TableColumn fonctionLecteur, TableColumn mobileLecteur,
                                            TextField _nom, TextField _fonction, TextField _mobile){
-        ObservableList<Lecteur> resultSearch = searchForLecteur(_nom, _fonction, _mobile);
+        setListLecteur(searchForLecteur(_nom, _fonction, _mobile));
+        ObservableList<Lecteur> resultSearch = getListLecteur();
+
         idLecteur.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Lecteur, Integer>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Lecteur, Integer> param) {
@@ -256,21 +270,26 @@ public class LecteurAction {
         _pdf.addHeaderRow(tableListLecteurItems);
         tableListLecteurItems.clear();
 
-        ObservableList<Lecteur> ALLlecteur = getAllLecteur();
-        for(Lecteur lecteur : ALLlecteur){
-            tableListLecteurItems.add("LEC-"+lecteur.getId());
-            tableListLecteurItems.add(lecteur.getNom_Lecteur());
-            tableListLecteurItems.add(lecteur.getFonction());
-            tableListLecteurItems.add(lecteur.getMobile());
-            _pdf.addRow(tableListLecteurItems);
-            tableListLecteurItems.clear();
+        ObservableList<Lecteur> ALLlecteur = getListLecteur();
+        if(ALLlecteur.toArray().length < 1){
+            AlertMessage.WarningAlert(ModalOwner, "Aucune donnée à exporter!!!");
         }
-        _pdf.addTable();
+        else{
+            for(Lecteur lecteur : ALLlecteur){
+                tableListLecteurItems.add("LEC-"+lecteur.getId());
+                tableListLecteurItems.add(lecteur.getNom_Lecteur());
+                tableListLecteurItems.add(lecteur.getFonction());
+                tableListLecteurItems.add(lecteur.getMobile());
+                _pdf.addRow(tableListLecteurItems);
+                tableListLecteurItems.clear();
+            }
+            _pdf.addTable();
 
-        _pdf.addTableDescription("Affichage de l'élément 0 à 0 sur 0 élément");
-        tableListLecteurItems.clear();
+            _pdf.addTableDescription("Affichage de "+ ALLlecteur.toArray().length + " élément(s) sur "+ GetTotalLecteur());
+            tableListLecteurItems.clear();
 
-        _pdf.generate(ModalOwner);
+            _pdf.generate(ModalOwner);
+        }
     }
 
     public static int GetTotalLecteur(){

@@ -19,7 +19,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PretAction {
+    private static ObservableList<Pret> ListPret;
 
+    public static ObservableList<Pret> getListPret() {
+        return ListPret;
+    }
+
+    public static void setListPret(ObservableList<Pret> listPret) {
+        ListPret = listPret;
+    }
     public static ArrayList set_readerNameSuggestion(){
         ArrayList _readerNameList = new ArrayList();
         Connection connection = connectionToDatabase.getInstance();
@@ -553,7 +561,9 @@ public class PretAction {
     }
 
     public static void ShowListPret(TableView tabListPret, TableColumn numPret, TableColumn titreOuvrage, TableColumn nomLecteur, TableColumn datedebPret, TableColumn datefinPret, TableColumn nbjourPret, TableColumn etatPret, TableColumn amendePret){
-        ObservableList<Pret> ListPret = GetAllPret();
+        setListPret(GetAllPret());
+        ObservableList<Pret> ListPret = getListPret();
+
 
         numPret.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Pret, Integer>, ObservableValue<String>>() {
             @Override
@@ -766,7 +776,9 @@ public class PretAction {
 
     public static void resultPretSearch(TableView tabListPret, TableColumn idPret, TableColumn titreLivre, TableColumn nomLecteur, TableColumn dateDeb, TableColumn dateFin, TableColumn Duree, TableColumn Etat, TableColumn Amende,
                                         TextField _numPret, TextField _nomLecteur, DatePicker _dateDeb, DatePicker _dateFin, TextField _titreOuvrage){
-        ObservableList<Pret> resultSearch = SearchForPret(_numPret, _nomLecteur, _dateDeb, _dateFin, _titreOuvrage);
+        setListPret(SearchForPret(_numPret, _nomLecteur, _dateDeb, _dateFin, _titreOuvrage));
+        ObservableList<Pret> resultSearch = getListPret();
+
         idPret.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Pret, Integer>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Pret, Integer> param) {
@@ -941,26 +953,32 @@ public class PretAction {
         _pdf.addHeaderRow(tableListPretItems);
         tableListPretItems.clear();
 
-        ObservableList<Pret> ALLPret = GetAllPret();
-        for(Pret pret : ALLPret){
-            tableListPretItems.add("P/"+pret.getId_Pret());
-            tableListPretItems.add(GetTitreOuvrage(pret.getId_Pret()));
-            tableListPretItems.add(GetNomLecteur(pret.getId_Pret()));
-            tableListPretItems.add(pret.getDateDebPret().toString());
-            tableListPretItems.add(pret.getDateFinPret().toString());
-            tableListPretItems.add(Integer.valueOf(pret.getNbJourPret()).toString());
-            tableListPretItems.add((pret.isEtat())? "En cours" : "Terminé");
-            tableListPretItems.add(Integer.valueOf(pret.getAmende()).toString());
+        ObservableList<Pret> ALLPret = getListPret();
 
-            _pdf.addRow(tableListPretItems);
-            tableListPretItems.clear();
+        if(ALLPret.toArray().length < 1){
+            AlertMessage.WarningAlert(modalOwner, "Aucune donnée à exporter!!!");
         }
-        _pdf.addTable();
+        else{
+            for(Pret pret : ALLPret){
+                tableListPretItems.add("P/"+pret.getId_Pret());
+                tableListPretItems.add(GetTitreOuvrage(pret.getId_Pret()));
+                tableListPretItems.add(GetNomLecteur(pret.getId_Pret()));
+                tableListPretItems.add(pret.getDateDebPret().toString());
+                tableListPretItems.add(pret.getDateFinPret().toString());
+                tableListPretItems.add(Integer.valueOf(pret.getNbJourPret()).toString());
+                tableListPretItems.add((pret.isEtat())? "En cours" : "Terminé");
+                tableListPretItems.add(Integer.valueOf(pret.getAmende()).toString());
 
-        _pdf.addTableDescription("Affichage de l'élément 0 à 0 sur 0 élément");
-        tableListPretItems.clear();
+                _pdf.addRow(tableListPretItems);
+                tableListPretItems.clear();
+            }
+            _pdf.addTable();
 
-        _pdf.generate(modalOwner);
+            _pdf.addTableDescription("Affichage de "+ALLPret.toArray().length+" élément(s) sur "+ GetTotalPret());
+            tableListPretItems.clear();
+
+            _pdf.generate(modalOwner);
+        }
     }
 
     public static int GetTotalPret(){

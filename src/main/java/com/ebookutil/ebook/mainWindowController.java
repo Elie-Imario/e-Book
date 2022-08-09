@@ -227,7 +227,7 @@ public class mainWindowController implements Initializable {
         updateLecteur.setOnAction((ActionEvent)->{
             Lecteur selectedLecteurForUpdate = TabListLecteur.getSelectionModel().getSelectedItem();
             if(selectedLecteurForUpdate == null){
-                AlertMessage.WarningAlert(mainWindow);
+                AlertMessage.WarningAlert(mainWindow, "Veuillez selectionner au moins une ligne!!!");
             }
             else{
                 initUpdateLecteur(selectedLecteurForUpdate);
@@ -239,7 +239,7 @@ public class mainWindowController implements Initializable {
         deleteLecteur.setOnAction((ActionEvent)->{
             Lecteur selectedLecteurForDelete = TabListLecteur.getSelectionModel().getSelectedItem();
             if(selectedLecteurForDelete == null){
-                AlertMessage.WarningAlert(mainWindow);
+                AlertMessage.WarningAlert(mainWindow,"Veuillez selectionner au moins une ligne!!!");
             }
             else{
                 deleteLecteurAction(selectedLecteurForDelete);
@@ -250,7 +250,7 @@ public class mainWindowController implements Initializable {
         detailLecteur.setOnAction((ActionEvent)->{
             Lecteur selectedLecteur = TabListLecteur.getSelectionModel().getSelectedItem();
             if(selectedLecteur == null){
-                AlertMessage.WarningAlert(mainWindow);
+                AlertMessage.WarningAlert(mainWindow, "Veuillez selectionner au moins une ligne!!!");
             }
             else{
                 showDetailLecteur(selectedLecteur);
@@ -304,7 +304,7 @@ public class mainWindowController implements Initializable {
         updateBook.setOnAction((ActionEvent)->{
             Livre selectedLivreForUpdate = TabListBook.getSelectionModel().getSelectedItem();
             if(selectedLivreForUpdate == null){
-                AlertMessage.WarningAlert(mainWindow);
+                AlertMessage.WarningAlert(mainWindow, "Veuillez selectionner au moins une ligne!!!");
             }
             else{
                 initUpdateLivre(selectedLivreForUpdate);
@@ -314,7 +314,7 @@ public class mainWindowController implements Initializable {
         deleteBook.setOnAction((ActionEvent)->{
             Livre selectedLivreForDelete = TabListBook.getSelectionModel().getSelectedItem();
             if(selectedLivreForDelete == null){
-                AlertMessage.WarningAlert(mainWindow);
+                AlertMessage.WarningAlert(mainWindow, "Veuillez selectionner au moins une ligne!!!");
             }
             else {
                 deleteLivreAction(selectedLivreForDelete);
@@ -357,7 +357,7 @@ public class mainWindowController implements Initializable {
         updatePret.setOnAction((ActionEvent)->{
             Pret PretSelected = TabListPret.getSelectionModel().getSelectedItem();
             if(PretSelected == null){
-                AlertMessage.WarningAlert(mainWindow);
+                AlertMessage.WarningAlert(mainWindow, "Veuillez selectionner au moins une ligne!!!");
             }
             else {
                 if(PretSelected.isEtat()){
@@ -372,7 +372,7 @@ public class mainWindowController implements Initializable {
         deletePret.setOnAction((ActionEvent)->{
             Pret PretSelected = TabListPret.getSelectionModel().getSelectedItem();
             if(PretSelected == null){
-                AlertMessage.WarningAlert(mainWindow);
+                AlertMessage.WarningAlert(mainWindow, "Veuillez selectionner au moins une ligne!!!");
             }
             else{
                 deletePretAction(PretSelected);

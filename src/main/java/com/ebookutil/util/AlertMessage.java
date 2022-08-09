@@ -41,14 +41,14 @@ public class AlertMessage {
         }
 
     }
-    public static void WarningAlert(VBox ModalOwner){
+    public static void WarningAlert(VBox ModalOwner, String msg){
         try{
             Stage stage =new Stage();
             FXMLLoader AlertFXML = new FXMLLoader(mainWindowController.class.getResource("BoAlert.fxml"));
             Scene scene = new Scene(AlertFXML.load(), 350, 100);
 
             BoAlertController boAlertController = AlertFXML.getController();
-            boAlertController.WarningAlert("Veuillez selectionner au moins une ligne!!!", "img/Warning.gif");
+            boAlertController.WarningAlert(msg, "img/Warning.gif");
             new Stage();
             Stage Primary;
             Primary = (Stage) ModalOwner.getScene().getWindow();
