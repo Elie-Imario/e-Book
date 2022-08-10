@@ -33,8 +33,7 @@ public class BoEffectuerPretController implements Initializable {
     @FXML private TableView TablePret;
     @FXML private TableView TableLecteur;
     @FXML private TableView TableLivre;
-    @FXML private Label totalPret;
-
+    @FXML private Label totalPret, totalBookenPret;
     @FXML private VBox mainWindow;
 
     @Override
@@ -180,6 +179,7 @@ public class BoEffectuerPretController implements Initializable {
 
 
         totalPret.setText(Integer.valueOf(PretAction.GetTotalPret()).toString());
+        totalBookenPret.setText(Integer.valueOf(BookAction.GetTotalLivrePret()).toString());
     }
 
     public void setTable(TableView<Pret> table){
@@ -194,9 +194,11 @@ public class BoEffectuerPretController implements Initializable {
     public void setMainWindow(VBox vBox){
         this.mainWindow = vBox;
     }
+    public void setTotalBookLabel(Label label) {this.totalBookenPret = label;}
     public void setTotalPretLabel(Label label){
         this.totalPret = label;
     }
+
 
     public void ADD_LAST_INSERT(){
         Connection connection = connectionToDatabase.getInstance();

@@ -109,6 +109,26 @@ public class LecteurAction {
 
     }
 
+    public static boolean verifyMobile(String mobilePhone){
+        Connection connection = connectionToDatabase.getInstance();
+        String query = "SELECT * FROM Lecteur WHERE Mobile ="+"'"+mobilePhone+"'"+"";
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if(resultSet.next()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
     public static void updateLecteur(int idLecteur, String nomLecteur, String emailLecteur, String fonctionLecteur, String mobileLecteur){
         Connection connection = connectionToDatabase.getInstance();
         String query = "UPDATE Lecteur set Nom_Lecteur=?,Fonction=?, Email=?, Mobile=?";
@@ -291,6 +311,7 @@ public class LecteurAction {
             _pdf.generate(ModalOwner);
         }
     }
+
 
     public static int GetTotalLecteur(){
 

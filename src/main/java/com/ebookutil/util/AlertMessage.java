@@ -100,14 +100,14 @@ public class AlertMessage {
 
     }
 
-    public static void ErrorAlert(VBox ModalOwner){
+    public static void ErrorAlert(VBox ModalOwner, String msg){
         try{
             Stage stage =new Stage();
             FXMLLoader AlertFXML = new FXMLLoader(mainWindowController.class.getResource("BoAlert.fxml"));
             Scene scene = new Scene(AlertFXML.load(), 350, 100);
 
             BoAlertController boAlertController = AlertFXML.getController();
-            boAlertController.ErrorAlert("Ce prêt est déjà terminé, il est impossible de le modifier!", "img/error.gif");
+            boAlertController.ErrorAlert(msg, "img/error.gif");
             new Stage();
             Stage Primary;
             Primary = (Stage) ModalOwner.getScene().getWindow();

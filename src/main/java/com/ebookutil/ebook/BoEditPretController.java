@@ -36,7 +36,7 @@ public class BoEditPretController implements Initializable {
     @FXML private TableView TablePret;
     @FXML private TableView TableLecteur;
     @FXML private TableView TableLivre;
-    @FXML private Label totalPret;
+    @FXML private Label totalPret, totalBookenPret;
 
     @FXML private VBox mainWindow;
 
@@ -254,6 +254,7 @@ public class BoEditPretController implements Initializable {
 
 
         totalPret.setText(Integer.valueOf(PretAction.GetTotalPret()).toString());
+        totalBookenPret.setText(Integer.valueOf(BookAction.GetTotalLivrePret()).toString());
 
     }
 
@@ -270,6 +271,7 @@ public class BoEditPretController implements Initializable {
     public void setMainWindow(VBox vBox){
         this.mainWindow = vBox;
     }
+    public void setTotalBookLabel(Label label) {this.totalBookenPret = label;}
     public void setTotalPretLabel(Label label){
         this.totalPret = label;
     }

@@ -32,14 +32,21 @@ public class LecteurValidateForm {
             throw new LecteurException("Le numero du Lecteur doit être de 10 caractères!");
         }
         else{
-            try {
-                Integer.parseInt(mobile.getText());
-            }
-            catch (NumberFormatException e){
+            if(LecteurAction.verifyMobile(mobile.getText())){
                 setErrorStyle(mobile);
                 setSuccessStyle(nom,email, fonction);
 
-                throw new LecteurException("Le numero du Lecteur doit être de type numérique!");
+                throw new LecteurException("Le numero de telephone existe déjà!");
+            }else{
+                try {
+                    Integer.parseInt(mobile.getText());
+                }
+                catch (NumberFormatException e){
+                    setErrorStyle(mobile);
+                    setSuccessStyle(nom,email, fonction);
+
+                    throw new LecteurException("Le numero du Lecteur doit être de type numérique!");
+                }
             }
         }
     }

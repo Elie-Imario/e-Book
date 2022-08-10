@@ -339,7 +339,7 @@ public class mainWindowController implements Initializable {
             }
         });
 
-        totalLivrePret.setText(Integer.valueOf(BookAction.GetTotalLivrePret()).toString());
+        totalLivrePret.setText(Integer.valueOf(BookAction.GetTotalLivrePret()).toString());//total des livres avec des prets en cours
 
 
 
@@ -364,7 +364,7 @@ public class mainWindowController implements Initializable {
                     initUpdatePret(PretSelected);
                 }
                 else{
-                    AlertMessage.ErrorAlert(mainWindow);
+                    AlertMessage.ErrorAlert(mainWindow, "Ce prêt est déjà terminé, il est impossible de le modifier!");
                 }
             }
         });
@@ -448,6 +448,8 @@ public class mainWindowController implements Initializable {
         GETListLecteurAction();//refresh TabListLecteur
         FormAction.clearFormGroupLecteur(readerName, emailReader, fonctionReader, mobileReader, errorMsg);//clearFormulaireLecteur
         LecteurValidateForm.setSuccessStyle(readerName, emailReader, fonctionReader, mobileReader);
+
+        totalLecteur.setText(Integer.valueOf(LecteurAction.GetTotalLecteur()).toString());//update totalPret
     }
 
     public void GETListLecteurAction(){
@@ -606,12 +608,14 @@ public class mainWindowController implements Initializable {
         Optional<ButtonType> buttonType = confirmation.showAndWait();
 
         if(buttonType.get() == ButtonType.OK){
-            BookAction.DeleteLivre(selectedLivreForDelete.getId_Ouvrage());
-
-            TabListBook.getItems().remove(selectedLivreForDelete);
-
-            totalLivrePret.setText(Integer.valueOf(BookAction.GetTotalLivrePret()).toString());
-
+            if(selectedLivreForDelete.getDisponible()){
+                BookAction.DeleteLivre(selectedLivreForDelete.getId_Ouvrage());
+                TabListBook.getItems().remove(selectedLivreForDelete);
+                totalLivrePret.setText(Integer.valueOf(BookAction.GetTotalLivrePret()).toString());
+            }
+            else{
+                AlertMessage.ErrorAlert(mainWindow, "Il est impossible de supprimer ce livre car il est en cours de prêt!!!");
+            }
         }
     }
 
@@ -633,6 +637,7 @@ public class mainWindowController implements Initializable {
             boEffectuerPretController.setTableLecteur(TabListLecteur);
             boEffectuerPretController.setTableLivre(TabListBook);
             boEffectuerPretController.setTotalPretLabel(totalPret);
+            boEffectuerPretController.setTotalBookLabel(totalLivrePret);
 
             Stage Primary = new Stage();
             Primary = (Stage) mainWindow.getScene().getWindow();
@@ -671,6 +676,7 @@ public class mainWindowController implements Initializable {
             boEditPretController.setTableLivre(TabListBook);
             boEditPretController.setTableLecteur(TabListLecteur);
             boEditPretController.setTotalPretLabel(totalPret);
+            boEditPretController.setTotalBookLabel(totalLivrePret);
 
             Stage Primary = new Stage();
             Primary = (Stage) mainWindow.getScene().getWindow();
@@ -708,12 +714,15 @@ public class mainWindowController implements Initializable {
         Optional<ButtonType> buttonType = confirmation.showAndWait();
 
         if(buttonType.get() == ButtonType.OK){
-            PretAction.DeletePret(selectedPretForDelete.getId_Pret());
+            if(selectedPretForDelete.isEtat()){
+                AlertMessage.ErrorAlert(mainWindow, "Il est impossible de supprimer ce prêt car il est encore en cours!!!");
+            }
+            else{
+                PretAction.DeletePret(selectedPretForDelete.getId_Pret());
+                TabListPret.getItems().remove(selectedPretForDelete);
+                totalPret.setText(Integer.valueOf(PretAction.GetTotalPret()).toString());
+            }
 
-            TabListPret.getItems().remove(selectedPretForDelete);
-
-
-            totalPret.setText(Integer.valueOf(PretAction.GetTotalPret()).toString());
         }
     }
 
