@@ -63,8 +63,6 @@ public class BoEffectuerPretController implements Initializable {
                 new animatefx.animation.FadeIn(errorMsgPret).play();
             }
 
-
-
         });
 
         dateDebPret.setOnAction((ActionEvent)->{

@@ -33,12 +33,12 @@ public class LoginValidateForm {
                 if(!isLoginValid(login.getText())){
                     setErrorStyle(login);
                     setSuccessStyle(passwordField);
-                    throw new boUserException("Ce Login est incorrect!");
+                    throw new boUserException("Le Login est incorrect!");
                 }
                 else if (!isPassWordCorrect(passwordField.getText())){
                     setErrorStyle(passwordField);
                     setSuccessStyle(login);
-                    throw new boUserException("Ce mot de passe est incorrect!");
+                    throw new boUserException("Le mot de passe est incorrect!");
                 }
             }
         }

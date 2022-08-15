@@ -61,6 +61,23 @@ public class PretAction {
         return _titleBook;
     }
 
+    public static ArrayList set_titleBookSuggestionForSearch(){
+        ArrayList _titleBook = new ArrayList();
+        Connection connection = connectionToDatabase.getInstance();
+        String query = "SELECT * FROM Livre";
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                _titleBook.add(resultSet.getString("Titre_Ouvrage"));
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return _titleBook;
+    }
+
     //Nb jour Pret<7
     public static void EffectuerPretAction(int _IdLecteur, int _IdBook, Date _dateDebPret, Date _dateFinPret, int _nbJourPret){
         Connection connection = connectionToDatabase.getInstance();
@@ -541,7 +558,7 @@ public class PretAction {
         ObservableList<Pret> AllPret = FXCollections.observableArrayList();
         Connection connection = connectionToDatabase.getInstance();
 
-        String query = "SELECT * FROM Pret ORDER BY Id_Pret asc";
+        String query = "SELECT * FROM Pret ORDER BY Id_Pret desc";
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet resultSet = statement.executeQuery(query);
@@ -759,6 +776,8 @@ public class PretAction {
             int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
             query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
         }
+
+        query += " ORDER BY Id_Pret desc";
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet resultSet = statement.executeQuery(query);
@@ -1005,7 +1024,7 @@ public class PretAction {
 
     public static void RefreshTablePret(TableView tablePret){
         //REFRESH TABLE
-        String query = "SELECT * FROM Pret ORDER BY Id_Pret asc";
+        String query = "SELECT * FROM Pret ORDER BY Id_Pret desc";
 
         tablePret.getItems().clear();
         Connection connection = connectionToDatabase.getInstance();

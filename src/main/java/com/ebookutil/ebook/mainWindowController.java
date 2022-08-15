@@ -18,10 +18,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -32,7 +34,7 @@ public class mainWindowController implements Initializable {
     private VBox mainWindow;
 
     //Menu Button
-    @FXML private Button btnLogOut, btnPret, btnAddBook, btnListBook, annuaireSearch, monCompte, btnAddReaderView, btnListReaderVIew, chartBtn;
+    @FXML private Button btnLogOut, btnPret, btnAddBook, btnListBook, monCompte, btnAddReaderView, btnListReaderVIew, chartBtn;
 
     //E-NDRANA Section View
     @FXML private VBox pretView, addOuvrageView, ListOuvrageView, annuaireView, monCompteView, createReaderView, ListReaderView, chartView;
@@ -77,7 +79,7 @@ public class mainWindowController implements Initializable {
     @FXML private Label totalLivrePret;
 
     //TabListLivre ContextMenu
-    @FXML private MenuItem updateBook, deleteBook;
+    @FXML private MenuItem detailBook, updateBook, deleteBook;
 
     //SEARCH OUVRAGE
     @FXML private TextField titreOuvrageSearch, nomAuteurSearch;
@@ -136,7 +138,7 @@ public class mainWindowController implements Initializable {
 
         btnPret.setOnMouseClicked((ActionEvent)->{
 
-            BtnStyleCurrentView.pretViewBtnStyle(btnPret, btnAddBook, btnListBook, annuaireSearch, monCompte,
+            BtnStyleCurrentView.pretViewBtnStyle(btnPret, btnAddBook, btnListBook, monCompte,
                     btnAddReaderView, btnListReaderVIew, chartBtn);
 
             pretView.toFront();
@@ -144,7 +146,7 @@ public class mainWindowController implements Initializable {
 
         btnAddBook.setOnMouseClicked((ActionEvent)->{
 
-            BtnStyleCurrentView.addBookViewBtnStyle(btnPret, btnAddBook, btnListBook, annuaireSearch, monCompte,
+            BtnStyleCurrentView.addBookViewBtnStyle(btnPret, btnAddBook, btnListBook, monCompte,
                     btnAddReaderView, btnListReaderVIew, chartBtn);
 
             addOuvrageView.toFront();
@@ -152,30 +154,23 @@ public class mainWindowController implements Initializable {
 
         btnListBook.setOnMouseClicked((ActionEvent)->{
 
-            BtnStyleCurrentView.ListBookViewBtnStyle(btnPret, btnAddBook, btnListBook, annuaireSearch, monCompte,
+            BtnStyleCurrentView.ListBookViewBtnStyle(btnPret, btnAddBook, btnListBook, monCompte,
                     btnAddReaderView, btnListReaderVIew, chartBtn);
 
             ListOuvrageView.toFront();
         });
 
-        annuaireSearch.setOnMouseClicked((ActionEvent)->{
-
-            BtnStyleCurrentView.annuaireSearchViewBtnStyle(btnPret, btnAddBook, btnListBook, annuaireSearch, monCompte,
-                    btnAddReaderView, btnListReaderVIew, chartBtn);
-
-            annuaireView.toFront();
-        });
 
         monCompte.setOnMouseClicked((ActionEvent)->{
 
-            BtnStyleCurrentView.monCompteViewBtnStyle(btnPret, btnAddBook, btnListBook, annuaireSearch, monCompte,
+            BtnStyleCurrentView.monCompteViewBtnStyle(btnPret, btnAddBook, btnListBook, monCompte,
                     btnAddReaderView, btnListReaderVIew, chartBtn);
 
             monCompteView.toFront();
         });
 
         btnAddReaderView.setOnMouseClicked((ActionEvent)->{
-            BtnStyleCurrentView.addReaderViewBtnStyle(btnPret, btnAddBook, btnListBook, annuaireSearch, monCompte,
+            BtnStyleCurrentView.addReaderViewBtnStyle(btnPret, btnAddBook, btnListBook, monCompte,
                     btnAddReaderView, btnListReaderVIew, chartBtn);
 
             createReaderView.toFront();
@@ -183,7 +178,7 @@ public class mainWindowController implements Initializable {
 
         btnListReaderVIew.setOnMouseClicked((ActionEvent)->{
 
-            BtnStyleCurrentView.listReaderViewBtnStyle(btnPret, btnAddBook, btnListBook, annuaireSearch, monCompte,
+            BtnStyleCurrentView.listReaderViewBtnStyle(btnPret, btnAddBook, btnListBook, monCompte,
                     btnAddReaderView, btnListReaderVIew, chartBtn);
 
             ListReaderView.toFront();
@@ -192,7 +187,7 @@ public class mainWindowController implements Initializable {
 
         chartBtn.setOnMouseClicked((ActionEvent)->{
 
-            BtnStyleCurrentView.ChartViewBtnStyle(btnPret, btnAddBook, btnListBook, annuaireSearch, monCompte,
+            BtnStyleCurrentView.ChartViewBtnStyle(btnPret, btnAddBook, btnListBook, monCompte,
                     btnAddReaderView, btnListReaderVIew, chartBtn);
 
             chartView.toFront();
@@ -329,7 +324,15 @@ public class mainWindowController implements Initializable {
             BookAction.resetToNormal(TabListBook, titreOuvrageSearch, nomAuteurSearch);
             GETListBookAction();
         });
-
+        detailBook.setOnAction((ActionEvent)->{
+            Livre selectedBook = TabListBook.getSelectionModel().getSelectedItem();
+            if(selectedBook == null){
+                AlertMessage.WarningAlert(mainWindow, "Veuillez selectionner au moins une ligne!!!");
+            }
+            else{
+                showDetailOuvrage(selectedBook);
+            }
+        });
         btnExportListBook.setOnMouseClicked((ActionEvent)->{
             try{
                 BookAction.Export_ListBook_toPDF(mainWindow);
@@ -378,6 +381,36 @@ public class mainWindowController implements Initializable {
                 deletePretAction(PretSelected);
             }
         });
+        dateDebSearch.setOnAction((ActionEvent)->{
+            dateFinSearch.setDayCellFactory(param -> new DateCell() {
+                @Override
+                public void updateItem(LocalDate localDate, boolean empty) {
+                    super.updateItem(localDate, empty);
+                    //Disable dates before current date
+                    setDisable(empty || localDate.compareTo(dateDebSearch.getValue()) < 0);
+                }
+            });
+        });
+
+        dateFinSearch.setOnAction((ActionEvent)->{
+            dateDebSearch.setDayCellFactory(param -> new DateCell() {
+                @Override
+                public void updateItem(LocalDate localDate, boolean empty) {
+                    super.updateItem(localDate, empty);
+                    //Disable dates after future date
+                    setDisable(empty || localDate.compareTo(dateFinSearch.getValue()) > 0);
+                }
+            });
+        });
+
+        //AutoCompletion TextField ReaderName
+        ArrayList readerNameList = PretAction.set_readerNameSuggestion();
+        TextFields.bindAutoCompletion(nomLecteurSearch, readerNameList);
+
+        //AutoCompletion TextField TitleBook
+        ArrayList titleBookList = PretAction.set_titleBookSuggestionForSearch();
+        TextFields.bindAutoCompletion(titreOuvragePretSearch, titleBookList);
+
         btnSearchPret.setOnMouseClicked((ActionEvent)->{
             PretAction.resultPretSearch(TabListPret , numPret, titreOuvrageEnPret, nomLecteurPret, dateDebPret, dateFinPret, nbJourPret, EtatPret, AmendePret,
                     numPretSearch, nomLecteurSearch, dateDebSearch, dateFinSearch, titreOuvragePretSearch);
@@ -501,11 +534,15 @@ public class mainWindowController implements Initializable {
         Optional<ButtonType> buttonType = confirmation.showAndWait();
 
         if(buttonType.get() == ButtonType.OK){
-            LecteurAction.deletelecteurItem(selectedLecteurForDelete.getId());
+            if(selectedLecteurForDelete.getNbPretEnCours() > 0){
+                AlertMessage.ErrorAlert(mainWindow, "Il est impossible de supprimer ce lecteur car il a encore un prêt en cours!!!");
+            }
+            else{
+                LecteurAction.deletelecteurItem(selectedLecteurForDelete.getId());
+                TabListLecteur.getItems().remove(selectedLecteurForDelete);
+                totalLecteur.setText(Integer.valueOf(LecteurAction.GetTotalLecteur()).toString());
+            }
 
-            TabListLecteur.getItems().remove(selectedLecteurForDelete);
-
-            totalLecteur.setText(Integer.valueOf(LecteurAction.GetTotalLecteur()).toString());
         }
     }
 
@@ -616,6 +653,33 @@ public class mainWindowController implements Initializable {
             else{
                 AlertMessage.ErrorAlert(mainWindow, "Il est impossible de supprimer ce livre car il est en cours de prêt!!!");
             }
+        }
+    }
+
+    public void showDetailOuvrage(Livre selectedOuvrage){
+        try {
+            Stage stage = new Stage();
+            FXMLLoader BoDetailOuvrageFXML = new FXMLLoader(mainWindowController.class.getResource("BoDetailOuvrage.fxml"));
+            Scene scene = new Scene(BoDetailOuvrageFXML.load(), 535, 464);
+
+            BoDetailOuvrageController boDetailOuvrageController = BoDetailOuvrageFXML.getController();
+            boDetailOuvrageController.setDetail(selectedOuvrage);
+
+            Stage Primary = new Stage();
+            Primary = (Stage) mainWindow.getScene().getWindow();
+            stage.initStyle(StageStyle.UNIFIED);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setTitle("DETAILS DE L'OUVRAGE");
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("img/Inspector.png")));
+            stage.setX(Primary.getX() + (Primary.getWidth()/2-150));
+            stage.setY(Primary.getY() + 95);
+            stage.initOwner(Primary);
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e){
+            e.printStackTrace();
         }
     }
 

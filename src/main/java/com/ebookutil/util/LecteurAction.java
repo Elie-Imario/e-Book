@@ -66,7 +66,7 @@ public class LecteurAction {
         Connection connection = connectionToDatabase.getInstance();
         //String query = "SELECT * FROM Lecteur";
 
-        String query = "SELECT * from Lecteur ORDER BY Id asc"; //En cas de problème affichage
+        String query = "SELECT * from Lecteur ORDER BY Id desc"; //En cas de problème affichage
 
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -107,6 +107,26 @@ public class LecteurAction {
             tableLecteur.setItems(ALLlecteur);
         }
 
+    }
+
+    public static boolean verifyLecteurName(String lecteurName){
+        Connection connection = connectionToDatabase.getInstance();
+        String query = "SELECT * FROM Lecteur WHERE Nom_Lecteur ="+"'"+lecteurName+"'"+"";
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if(resultSet.next()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     public static boolean verifyMobile(String mobilePhone){
@@ -170,7 +190,7 @@ public class LecteurAction {
 
     public static void RefreshTableLecteur(TableView TabListLecteur){
         //REFRESH TABLE
-        String query = "SELECT * FROM Lecteur";
+        String query = "SELECT * FROM Lecteur ORDER BY Id desc";
 
         TabListLecteur.getItems().clear();
         Connection connection = connectionToDatabase.getInstance();
@@ -227,6 +247,7 @@ public class LecteurAction {
             query = "SELECT * FROM Lecteur WHERE Nom_Lecteur LIKE "+"'%"+nom.getText()+"%'"+" AND Fonction="+"'"+fonction.getText()+"'"+" AND Mobile="+"'"+mobile.getText()+"'"+"";
         }
 
+        query += " ORDER BY Id desc";
 
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);

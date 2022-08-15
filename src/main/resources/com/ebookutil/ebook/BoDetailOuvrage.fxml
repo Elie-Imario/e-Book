@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="535.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ebookutil.ebook.BoDetailOuvrageController">
+   <children>
+      <HBox prefHeight="71.0" prefWidth="535.0">
+         <children>
+            <Label fx:id="titledetail" alignment="CENTER" prefHeight="83.0" prefWidth="535.0" styleClass="title-lead-Modal" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="398.0" prefWidth="535.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="535.0">
+               <children>
+                  <Label prefHeight="68.0" styleClass="label-Form" text="Titre de l'ouvrage :" />
+                  <Label fx:id="detailTitreOuvrage" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="535.0">
+               <children>
+                  <Label prefHeight="68.0" styleClass="label-Form" text="Auteur :" />
+                  <Label fx:id="detailNomAuteur" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="78.0" prefWidth="535.0">
+               <children>
+                  <Label prefHeight="68.0" styleClass="label-Form" text="Date d'édition  :" />
+                  <Label fx:id="detailDateEdition" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="146.0" prefHeight="68.0" prefWidth="535.0">
+               <children>
+                  <Label prefHeight="68.0" styleClass="label-Form" text="Disponibilité :" />
+                  <Label fx:id="detailDisponibilite" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="214.0" prefHeight="68.0" prefWidth="535.0">
+               <children>
+                  <Label prefHeight="68.0" styleClass="label-Form" text="Nombre de fois en prêt :" />
+                  <Label fx:id="detailNbfoisEnPret" prefHeight="68.0" styleClass="detail">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@css/LabelForm.css" />
+      <URL value="@css/Title-lead.css" />
+   </stylesheets>
+</VBox>

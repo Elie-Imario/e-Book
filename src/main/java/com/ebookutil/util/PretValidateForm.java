@@ -46,7 +46,14 @@ public class PretValidateForm {
         else if((title.getText()) != null || (nom.getText()) != null){
             if((title.getText()) != null){
                 if (VerifyLivre(title.getText())){
-                    System.out.println("Livre Valid");
+                    if(isLivreDisponible(title.getText())){
+                        System.out.println("Livre Valid");
+                    }
+                    else{
+                        setErrorStyle(title);
+                        setSuccessStyle(nom, dateDeb, dateFin);
+                        throw new PretException("Cet ouvrage n'est pas diponible pour un prêt!");
+                    }
                 }
                 else {
                     setErrorStyle(title);
@@ -109,11 +116,18 @@ public class PretValidateForm {
 
         else if((title.getText()) != null){
             if (VerifyLivre(title.getText())){
-                System.out.println("Livre Valid");
+                if(isLivreDisponible(title.getText())){
+                    System.out.println("Livre Valid");
+                }
+                else{
+                    setErrorStyle(title);
+                    setSuccesStyle(dateDeb, dateFin);
+                    throw new PretException("Cet ouvrage n'est pas diponible pour un prêt!");
+                }
             }
             else {
                 setErrorStyle(title);
-                setErrorStyle(dateDeb, dateFin);
+                setSuccesStyle(dateDeb, dateFin);
                 throw new PretException("Cet ouvrage n'est pas encore enregistré sur E-NDRANA!");
             }
         }
@@ -305,6 +319,28 @@ public class PretValidateForm {
                 statement.close();
                 return false;
             }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public static boolean isLivreDisponible(String _titleBook){
+        Connection connection = connectionToDatabase.getInstance();
+        String query = "SELECT Disponible  FROM Livre WHERE Titre_Ouvrage ="+"\""+_titleBook+"\""+"";
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if(resultSet.next()){
+                if(resultSet.getBoolean("Disponible")){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            return false;
         }
         catch (Exception e){
             e.printStackTrace();

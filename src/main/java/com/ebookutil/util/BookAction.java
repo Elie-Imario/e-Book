@@ -59,7 +59,7 @@ public class BookAction {
         Connection connection = connectionToDatabase.getInstance();
         //String query = "SELECT * from Livre";
 
-        String query = "SELECT * from Livre ORDER BY Id_Ouvrage asc"; //En cas de problème affichage
+        String query = "SELECT * from Livre ORDER BY Id_Ouvrage desc"; //En cas de problème affichage
 
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -156,7 +156,7 @@ public class BookAction {
     }
 
     public static void RefreshTableLivre(TableView TabListLivre){
-        String query = "SELECT * FROM Livre";
+        String query = "SELECT * FROM Livre ORDER BY Id_Ouvrage desc";
         TabListLivre.getItems().clear();
 
         Connection connection = connectionToDatabase.getInstance();
@@ -191,6 +191,9 @@ public class BookAction {
         else {
             query = "SELECT * FROM Livre WHERE Titre_Ouvrage ="+"\""+_titreLivre.getText()+"\""+" AND Nom_Auteur ="+"'"+_auteurLivre.getText()+"'"+"";
         }
+
+        query += " ORDER BY Id_Ouvrage desc";
+
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet resultSet = statement.executeQuery(query);
