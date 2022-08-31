@@ -119,11 +119,11 @@ public class PretValidateForm {
                 if(isLivreDisponible(title.getText())){
                     System.out.println("Livre Valid");
                 }
-                else{
+                /*else{
                     setErrorStyle(title);
                     setSuccesStyle(dateDeb, dateFin);
                     throw new PretException("Cet ouvrage n'est pas diponible pour un prêt!");
-                }
+                }*/
             }
             else {
                 setErrorStyle(title);

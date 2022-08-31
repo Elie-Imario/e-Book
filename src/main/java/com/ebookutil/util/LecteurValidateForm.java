@@ -32,19 +32,7 @@ public class LecteurValidateForm {
             throw new LecteurException("Le numero du Lecteur doit être de 10 caractères!");
         }
         else{
-            if(LecteurAction.verifyLecteurName(nom.getText())){
-                setErrorStyle(nom);
-                setSuccessStyle(fonction,email, mobile);
-
-                throw new LecteurException("Ce lecteur est déjà un abonné sur E-Ndrana!");
-            }
-            else if(LecteurAction.verifyMobile(mobile.getText())){
-                setErrorStyle(mobile);
-                setSuccessStyle(nom,email, fonction);
-
-                throw new LecteurException("Le numero de telephone existe déjà!");
-            }
-            else{
+            if(mobile.getText()!=null){
                 try {
                     Integer.parseInt(mobile.getText());
                 }

@@ -227,7 +227,7 @@ public class LecteurAction {
             }
 
             else if((nom.getText().isBlank()) && (fonction.getText().isBlank()) && (mobile.getText() != null)){
-                query = "SELECT * FROM Lecteur WHERE Mobile="+"'"+mobile.getText()+"'"+"";
+                query = "SELECT * FROM Lecteur WHERE Mobile LIKE "+"'%"+mobile.getText()+"%'"+"";
             }
 
             else if((nom.getText().isBlank()) && (fonction.getText() != null) && (mobile.getText() != null)){

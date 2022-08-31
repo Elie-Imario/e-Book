@@ -639,7 +639,7 @@ public class PretAction {
         String query = "";
         if((numPret.getText().isBlank()) || (nomLecteur.getText().isBlank()) || (dateDeb.getValue() == null) || (dateFin.getValue() == null) || (titreOuvrage.getText().isBlank()) ){
             if(numPret.getText() != null && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank()) ){
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+"";
             }
             else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
@@ -659,17 +659,17 @@ public class PretAction {
             //2 params
             else if((numPret.getText() != null ) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +"";
             }
             else if((numPret.getText() != null ) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() != null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"";
             }
             else if((numPret.getText() != null ) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND DateFInPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND DateFInPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+"";
             }
             else if((numPret.getText() != null ) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue() == null) && (titreOuvrage.getText()!= null)){
                 int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Ouvrage="+ IdOuvrage +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND Id_Ouvrage="+ IdOuvrage +"";
             }
             /**/
             else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
@@ -702,27 +702,27 @@ public class PretAction {
             //3params
             else if((numPret.getText() != null ) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null) && (dateFin.getValue() == null) && (titreOuvrage.getText().isBlank())){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"";
             }
             else if((numPret.getText() != null ) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateFinPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateFinPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+"";
             }
             else if((numPret.getText() != null) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null) && (dateFin.getValue()  == null) && (titreOuvrage.getText() != null)){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
                 int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND Id_Ouvrage="+ IdOuvrage +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND Id_Ouvrage="+ IdOuvrage +"";
             }
             else if((numPret.getText() != null) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() != null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+"";
             }
             else if((numPret.getText() != null) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() != null) && (dateFin.getValue() == null) && (titreOuvrage.getText() != null)){
                 int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"AND Id_Ouvrage="+ IdOuvrage +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+"AND Id_Ouvrage="+ IdOuvrage +"";
             }
             else if((numPret.getText() != null) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() == null) && (dateFin.getValue() != null) && (titreOuvrage.getText() != null)){
                 int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND DateFinPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+"AND Id_Ouvrage="+ IdOuvrage +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND DateFinPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+"AND Id_Ouvrage="+ IdOuvrage +"";
             }
             /**/
             else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null) && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
@@ -748,7 +748,7 @@ public class PretAction {
             //4params
             else if((numPret.getText() != null) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null)  && (dateFin.getValue() != null) && (titreOuvrage.getText().isBlank())){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+"";
             }
             else if((numPret.getText().isBlank()) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null)  && (dateFin.getValue() != null) && (titreOuvrage.getText() != null)){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
@@ -757,24 +757,24 @@ public class PretAction {
             }
             else if((numPret.getText() != null) && (nomLecteur.getText().isBlank()) && (dateDeb.getValue() != null)  && (dateFin.getValue() != null) && (titreOuvrage.getText() != null)){
                 int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
             }
             else if((numPret.getText() != null) && (nomLecteur.getText() != null) && (dateDeb.getValue() == null)  && (dateFin.getValue() != null) && (titreOuvrage.getText() != null)){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
                 int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateFinPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateFinPret="+"'"+ Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
             }
             else if((numPret.getText() != null) && (nomLecteur.getText() != null) && (dateDeb.getValue() != null)  && (dateFin.getValue() == null) && (titreOuvrage.getText() != null)){
                 int IdLecteur = GetIdLecteur(nomLecteur.getText());
                 int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-                query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
+                query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret="+"'"+ Date.valueOf(dateDeb.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
             }
 
         }
         else{
             int IdLecteur = GetIdLecteur(nomLecteur.getText());
             int IdOuvrage = GetIdOuvrage(titreOuvrage.getText());
-            query = "SELECT * FROM Pret WHERE Id_Pret="+Integer.parseInt(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
+            query = "SELECT * FROM Pret WHERE Id_Pret="+convertNumber(numPret.getText())+" AND Id_Lecteur="+ IdLecteur +" AND DateDebPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND DateFinPret BETWEEN "+"'"+Date.valueOf(dateDeb.getValue())+"'"+" AND "+"'"+Date.valueOf(dateFin.getValue())+"'"+" AND Id_Ouvrage="+ IdOuvrage +"";
         }
 
         query += " ORDER BY Id_Pret desc";
@@ -1053,5 +1053,17 @@ public class PretAction {
         dateFin.setValue(null);
         titreOuvrage.clear();
         tabListPret.setPrefHeight(337);
+    }
+
+    public static int convertNumber(String number){
+        int value;
+        try {
+            value = Integer.parseInt(number);
+        }
+        catch (NumberFormatException e){
+            System.out.println("Incorrect value");
+            value = 0;
+        }
+        return value;
     }
 }

@@ -23,7 +23,7 @@ public class LoginValidateForm {
         else if((login.getText()).isBlank() && (passwordField.getText())!=null){
             setErrorStyle(login);
             setSuccessStyle(passwordField);
-            throw new boUserException("Veuillez renseigner le login du compte!");
+            throw new boUserException("Veuillez renseigner le login!");
         }
         else {
             if (isLoginValid(login.getText()) && isPassWordCorrect(passwordField.getText())){
